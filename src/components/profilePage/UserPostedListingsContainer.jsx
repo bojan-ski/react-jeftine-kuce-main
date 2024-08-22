@@ -1,10 +1,8 @@
-import { useState, useEffect } from "react"
+import { useState } from "react"
 import { useLoaderData } from "react-router-dom"
 // firebase/firestore funcs
 import { doc, deleteDoc } from "firebase/firestore"
 import { db } from "../../firebase.config"
-// context
-import { useGlobalContext } from "../../context.jsx"
 // api func 
 import deleteUploadedImageFromDB from "../../api/deleteUploadedImageFromDB.js"
 // utils func
@@ -23,12 +21,6 @@ const UserPostedListingsContainer = () => {
         totalDataList: allUserPostedListings || [],
         displayedDataList: allUserPostedListings?.length >= 10 ? allUserPostedListings.slice(0, 9) : allUserPostedListings || []
     });
-
-    const { setCurrentPageNumber } = useGlobalContext()
-
-    useEffect(() => {
-        setCurrentPageNumber(1)
-    }, [])
 
     const deleteUserPostedListing = async (userPostedListingID) => {
         if (window.confirm('Are you sure you want to delete?')) {

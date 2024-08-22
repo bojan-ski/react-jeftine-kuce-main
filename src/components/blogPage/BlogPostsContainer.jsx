@@ -1,7 +1,5 @@
-import { useState, useEffect } from "react"
+import { useState } from "react"
 import { useLoaderData } from "react-router-dom"
-// context
-import { useGlobalContext } from "../../context.jsx"
 // component
 import Pagination from "../Pagination.jsx"
 import AllBlogPostsList from "./AllBlogPostsList.jsx"
@@ -14,12 +12,6 @@ const BlogPostsContainer = () => {
         displayedDataList: allBlogPosts?.length >= 10 ? allBlogPosts.slice(0, 9) : allBlogPosts
     })    
 
-    const { setCurrentPageNumber } = useGlobalContext()
-    
-    useEffect(() => {
-        setCurrentPageNumber(1)
-    }, [])
-
     // Search function
     const handleSearch = e => {
         const searchTerm = e.target.value.toLowerCase()
@@ -30,7 +22,6 @@ const BlogPostsContainer = () => {
             totalDataList: searchResults,
             displayedDataList: searchResults.length >= 10 ? searchResults.slice(0, 9) : searchResults
         })
-        setCurrentPageNumber(1)
     }
 
     return (
