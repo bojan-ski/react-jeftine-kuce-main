@@ -8,20 +8,15 @@ import AllBlogPostsList from "./AllBlogPostsList.jsx"
 
 
 const BlogPostsContainer = () => {
-    const allBlogPosts = useLoaderData()
-    
-    const { setCurrentPageNumber } = useGlobalContext()
-
+    const allBlogPosts = useLoaderData()  
     const [blogPostsList, setBlogPostsList] = useState({
-        totalDataList: null,
-        displayedDataList: null
-    })
+        totalDataList: allBlogPosts,
+        displayedDataList: allBlogPosts?.length >= 10 ? allBlogPosts.slice(0, 9) : allBlogPosts
+    })    
 
+    const { setCurrentPageNumber } = useGlobalContext()
+    
     useEffect(() => {
-        setBlogPostsList({
-            totalDataList: allBlogPosts,
-            displayedDataList: allBlogPosts?.length >= 10 ? allBlogPosts.slice(0, 9) : allBlogPosts
-        })
         setCurrentPageNumber(1)
     }, [])
 

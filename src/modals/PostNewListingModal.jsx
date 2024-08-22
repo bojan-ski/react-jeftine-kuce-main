@@ -15,6 +15,7 @@ import { toast } from "react-toastify";
 const PostNewListingModal = () => {
     const { userData } = useGlobalContext()
     const { userID, userName, userVerified } = userData
+    
     const [isLoading, setIsLoading] = useState(false);
     const [formData, setFormData] = useState({
         userRef: userID,
@@ -92,7 +93,7 @@ const PostNewListingModal = () => {
 
         if (correctImageSize) {
             let imageUrls = await Promise.all(
-                [...propertyImages].map(uploadedImage => storeUploadedImage(uploadedImage))
+                [...propertyImages].map(uploadedImage => storeUploadedImage(uploadedImage, userName, contactEmailAddress))
             ).catch(() => {
                 // spinner
                 setIsLoading(false)
