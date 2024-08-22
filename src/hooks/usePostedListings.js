@@ -1,17 +1,19 @@
-import { useState } from "react";
+import { useState, useCallback } from "react";
 // firebase func
 import { collection, query, orderBy, startAfter, limit, getDocs, where } from "firebase/firestore";
 import { db } from "../firebase.config";
 // toastify
 import { toast } from "react-toastify";
 
+
 const usePostedListings = (itemsPerPage) => {
     const [listings, setListings] = useState([]);
     const [lastVisible, setLastVisible] = useState(null);
     const [page, setPage] = useState(0);
 
-    const fetchListings = async (pageNumber = 0, condition = '', reset = false) => {       
-        try {            
+    // const fetchListings = async (pageNumber = 0, condition = '', reset = false) => {       
+    const fetchListings = useCallback(async (pageNumber = 0, condition = '', reset = false) => {
+        try {
             let constraints = [
                 orderBy('timestamp', 'desc'),
                 limit(itemsPerPage)
@@ -31,7 +33,7 @@ const usePostedListings = (itemsPerPage) => {
             }
             if (selectedDistrict && selectedDistrict !== "Svi okruzi") {
                 constraints.push(where('propertyDistrict', '==', selectedDistrict));
-            }        
+            }
 
             let q;
 
@@ -52,6 +54,8 @@ const usePostedListings = (itemsPerPage) => {
                         ...constraints,
                         startAfter(lastVisible),
                     );
+                } else {
+                    return
                 }
             }
 
@@ -66,7 +70,7 @@ const usePostedListings = (itemsPerPage) => {
 
             // Update the last visible document for the next page
             const newLastVisible = querySnapshot.docs[querySnapshot.docs.length - 1];
-            setLastVisible(newLastVisible);           
+            setLastVisible(newLastVisible);
 
             // Replace the listings with the new set of documents for the current page
             setListings(querySnapshot.docs.map(doc => ({ id: doc.id, data: doc.data() })));
@@ -75,8 +79,8 @@ const usePostedListings = (itemsPerPage) => {
             //error message
             toast.error('Greška prilikom prikazivanja svi objavljenih oglasa, molimo Vas probajte ponovo')
         }
-    };
-    
+    }, [itemsPerPage, lastVisible]);
+
     return { listings, fetchListings, page };
 }
 
