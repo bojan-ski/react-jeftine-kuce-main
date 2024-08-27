@@ -15,7 +15,7 @@ import { toast } from "react-toastify";
 const PostNewListingModal = () => {
     const { userData } = useGlobalContext()
     const { userID, userName, userVerified } = userData
-    
+
     const [isLoading, setIsLoading] = useState(false);
     const [formData, setFormData] = useState({
         userRef: userID,
@@ -32,12 +32,13 @@ const PostNewListingModal = () => {
         propertyDistrict: 'Beograd',
         propertyImages: [],
         askingPrice: '',
+        listingDescription: '',
         contactFullName: '',
         contactPhoneNumber: '',
         contactEmailAddress: '',
     })
 
-    const { listingType, propertyType, propertyName, lotNumber, numRooms, numBathrooms, squareFootage, propertyAddress, propertyLocation, propertyDistrict, propertyImages, askingPrice, contactFullName, contactPhoneNumber, contactEmailAddress } = formData
+    const { listingType, propertyType, propertyName, lotNumber, numRooms, numBathrooms, squareFootage, propertyAddress, propertyLocation, propertyDistrict, propertyImages, askingPrice, listingDescription, contactFullName, contactPhoneNumber, contactEmailAddress } = formData
 
     const onMutate = (e) => {
         // images - files
@@ -371,10 +372,6 @@ const PostNewListingModal = () => {
                                             required
                                         />
                                     </div>
-                                </div>
-
-                                {/* row item 2 */}
-                                <div className="col-12 col-lg-6">
 
                                     {/* property district */}
                                     <div className="mb-3">
@@ -389,6 +386,10 @@ const PostNewListingModal = () => {
                                             })}
                                         </select>
                                     </div>
+                                </div>
+
+                                {/* row item 2 */}
+                                <div className="col-12 col-lg-6">
 
                                     {/* property images */}
                                     <div className="mb-3">
@@ -423,6 +424,14 @@ const PostNewListingModal = () => {
                                             />
                                             {listingType === 'izdajem' && <p className='fw-bold ms-2 mb-0'>Mesečno</p>}
                                         </div>
+                                    </div>
+
+                                    {/* listing description */}
+                                    <div className="mb-3">
+                                        <label className='form-label fw-bold'>
+                                            Opis
+                                        </label>
+                                        <textarea className='form-control' id="listingDescription" value={listingDescription} onChange={onMutate} maxLength='350' rows={7} placeholder="Opis vašeg oglasa" required />
                                     </div>
 
                                     {/* contact info*/}
