@@ -4,7 +4,7 @@ import { useGlobalContext } from "../../context.jsx"
 import PostNewListingModal from "../../modals/PostNewListingModal.jsx"
 
 const UserLoggedIn = () => {
-    const { userData, logOutUser } = useGlobalContext()
+    const { userData } = useGlobalContext()
 
     return (
         <>
@@ -34,13 +34,7 @@ const UserLoggedIn = () => {
 
                     {/* row item 2 */}
                     <div className="col-12 col-md-6 mb-3 mb-md-0">
-                        <h5 className="text-muted mb-3">
-                            Ako zelite da se odjavite:
-                        </h5>
-                        <button type="button" className="btn btn-danger fw-bold" onClick={logOutUser}>
-                            Odjavi se
-                        </button>
-
+                        
                     </div>
                 </div>
             </section>

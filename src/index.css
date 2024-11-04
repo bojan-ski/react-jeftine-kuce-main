@@ -96,15 +96,25 @@ textarea {
   background-color: #fff;
 }
 
-/* NavbarUserOnboarding component */
-#header .user-onboarding .navbar-brand img {
+/* HeaderTop component */
+/* #header .user-onboarding .navbar-brand img {
   width: 197px;
   height: 48px;
+} */
+
+#header .social-links .social-link a {
+  color: var(--orange-color) !important;
+  border-radius: 50%;
+  border: 1px solid var(--orange-color);
 }
 
-#header .user-onboarding .header-btn-container,
+#header .social-links .social-link a:hover {
+  background-color: var(--orange-color);
+  color: #fff !important;
+  transition: var(--transition-ease);
+}
+
 #header .user-onboarding .header-btn-container button {
-  font-weight: 500;
   font-size: 0.85rem;
 }
 
@@ -116,8 +126,7 @@ textarea {
 
 /* NavbarNavigation component */
 #header .navbar .home-btn {
-  padding: 15px 18px;
-  border-radius: 10px;
+  border-radius: 8px;
   transition: all 0.3s ease;
 }
 
@@ -351,13 +360,13 @@ main {
   transition: all 0.3s ease;
 }
 
-#footer .footer-links .footer-social-links .footer-social-link a {
+#footer .social-links .social-link a {
   background-color: #120a21;
   border-radius: 50%;
   border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
-#footer .footer-links .footer-social-links .footer-social-link a:hover {
+#footer .social-links .social-link a:hover {
   background-color: var(--orange-color);
   transition: var(--transition-ease);
 }

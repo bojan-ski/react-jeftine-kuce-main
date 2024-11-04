@@ -15,6 +15,7 @@ export const AppProvider = ({ children }) => {
 
     // user details
     const [userData, setUserData] = useState({
+        isLoggedIn: false,
         userID: '',
         userName: '',
         userVerified: false
@@ -25,12 +26,14 @@ export const AppProvider = ({ children }) => {
             if (user) {
                 auth.currentUser ? (
                     setUserData({
+                        isLoggedIn: true,
                         userID: user.uid,
                         userName: user.displayName,
                         userVerified: user.emailVerified
                     })
                 ) : (
                     setUserData({
+                        isLoggedIn: false,
                         userID: '',
                         userName: '',
                         userVerified: false
@@ -40,36 +43,12 @@ export const AppProvider = ({ children }) => {
         })
     }, [])
 
-    // log out user
-    const navigate = useNavigate()
-
-    const logOutUser = async () => {
-        if (window.confirm('Da li ste sigurni da želite da se odjavite?')) {
-            try {
-                await signOut(auth)
-
-                setUserData({
-                    userID: '',
-                    userName: ''
-                })
-
-                // success message
-                toast.success('Odjavili ste se')
-
-                // after the user has logged out, the user is redirected to the Dashboard page
-                navigate('/')
-            } catch (error) {
-                //error message
-                toast.error('Greška prilikom odjave')
-            }
-        }
-    }
-
     // display listings
     const itemsPerPage = 9;
     const { listings, fetchListings, page } = usePostedListings(itemsPerPage); 
     
     // filter option
+    const navigate = useNavigate()
     const [condition, setCondition] = useState()
     const [disableOption, setDisableOption] = useState(false)
 
@@ -102,7 +81,7 @@ export const AppProvider = ({ children }) => {
 
     return <AppContext.Provider value={{
         userData, //Profile, NavbarUserOnboarding, UserLoggedIn, PostNewListingModal
-        logOutUser, // NavbarUserOnboarding, UserLoggedIn
+        setUserData, // LogOutBtn
 
         listings, // PostedListings, PostedListingsPagination
         fetchListings, // PostedListings, PostedListingsSearchOption, PostedListingsPagination

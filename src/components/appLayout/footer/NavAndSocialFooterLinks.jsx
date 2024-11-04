@@ -5,9 +5,8 @@ import scrollToTop from "../../../utils/scrollToTop.js"
 import appNavigationLinks from '../../../data/appNavigationLinks.js'
 //asset
 import footerLogo from '../../../assets/footer-assets/jeftine_kuce_logo_text_footer.png'
-// react icons
-import { FaFacebookF, FaLinkedin } from "react-icons/fa"
-import { BsInstagram, BsTwitter, BsYoutube } from "react-icons/bs"
+// components
+import SocialLinks from "../SocialLinks.jsx"
 
 
 const NavAndSocialFooterLinks = () => {
@@ -37,33 +36,7 @@ const NavAndSocialFooterLinks = () => {
 
                     {/* row item 3 */}
                     <div className="col-12 col-md-3">
-                        <ul className="footer-social-links list-unstyled mb-2 d-flex justify-content-center align-items-center">
-                            <li className="footer-social-link me-2">
-                                <Link to='https://www.facebook.com/groups/282177199514267/?ref=share_group_link' className="text-white fw-bold p-2" target="_blank">
-                                    <FaFacebookF size={20} />
-                                </Link>
-                            </li>
-                            <li className="footer-social-link me-2">
-                                <Link to='https://twitter.com/i/flow/login?redirect_after_login=%2Fjeftinekuce' className="text-white fw-bold p-2" target="_blank">
-                                    <BsTwitter size={20} />
-                                </Link>
-                            </li>
-                            <li className="footer-social-link me-2">
-                                <Link to='https://www.linkedin.com/in/jeftine-ku%C4%87e-9089572ba?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app' className="text-white fw-bold p-2" target="_blank">
-                                    <FaLinkedin size={20} />
-                                </Link>
-                            </li>
-                            <li className="footer-social-link me-2">
-                                <Link to='https://www.facebook.com/groups/282177199514267/?ref=share_group_link' className="text-white fw-bold p-2" target="_blank">
-                                    <BsInstagram size={20} />
-                                </Link>
-                            </li>
-                            <li className="footer-social-link">
-                                <Link to='https://www.youtube.com/@jeftinekuce7982' className="text-white fw-bold p-2" target="_blank">
-                                    <BsYoutube size={20} />
-                                </Link>
-                            </li>
-                        </ul>
+                        <SocialLinks />
                     </div>
                 </div>
             </div>

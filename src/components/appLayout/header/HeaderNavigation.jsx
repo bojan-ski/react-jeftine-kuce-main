@@ -1,3 +1,4 @@
+import React from 'react'
 import { Link, NavLink } from "react-router-dom"
 // data
 import appNavigationLinks from "../../../data/appNavigationLinks.js"
@@ -5,18 +6,25 @@ import appNavigationLinks from "../../../data/appNavigationLinks.js"
 import { BsHouseHeart } from "react-icons/bs"
 import { IoReorderThreeOutline } from "react-icons/io5"
 
+//asset
+import headerLogo from '../../../assets/header-assets/jeftine_kuce_logo_text_whit_small.png'
 
-const NavbarNavigation = () => {
+
+const HeaderNavigation = () => {
     return (
         <nav className="navbar navbar-expand-md">
             <div className="container-fluid">
                 {/* home btn - link */}
-                <Link className="home-btn fw-bold text-white bg-orange-hover" to="/">
+                <Link className="home-btn bg-orange-hover px-2 py-2" to="/">
+                    <img src={headerLogo} alt="portal-icon" style={{ height: '30px' }} />
+                </Link>
+
+                {/* <Link className="home-btn fw-bold text-white bg-orange-hover" to="/">
                     <BsHouseHeart size={30} style={{ verticalAlign: 'bottom' }} />
                     <span className="ms-1">
                         Nekretnine
                     </span>
-                </Link>
+                </Link> */}
 
                 {/* navbar (collapse) toggle btn */}
                 <button className="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavigation" aria-controls="navbarNavigation" aria-expanded="false" aria-label="Toggle navigation">
@@ -40,4 +48,4 @@ const NavbarNavigation = () => {
     )
 }
 
-export default NavbarNavigation
+export default HeaderNavigation

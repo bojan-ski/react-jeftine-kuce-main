@@ -10,20 +10,26 @@ import headerLogo from '../../../assets/header-assets/jeftine_kuce_logo_text_hea
 // React Icons
 import { BiSolidUserCheck } from 'react-icons/bi'
 import { IoLogIn } from 'react-icons/io5'
+// components
+import LogOutBtn from './LogOutBtn.jsx'
+import SocialLinks from '../SocialLinks.jsx'
 
 
-const NavbarUserOnboarding = () => {
-    const { userData, logOutUser } = useGlobalContext()
+const HeaderTop = () => {
+    const { userData } = useGlobalContext()
 
     return (
         <>
-            <div className='user-onboarding container-fluid d-flex align-items-center justify-content-between pb-1 border-bottom'>
-                <Link className="navbar-brand" to="/">
+            <div className='user-onboarding py-3 container-fluid d-flex align-items-center justify-content-between border-bottom'>
+                <div className='mt-1'>
+                    <SocialLinks />
+                </div>
+                {/* <Link className="navbar-brand" to="/">
                     <img src={headerLogo} alt="portal jeftine kuce - logo" />
-                </Link>
+                </Link> */}
 
                 <div className="header-btn-container d-flex align-items-center">
-                    {userData.userName ? (
+                    {(userData.isLoggedIn && userData.userName) ? (
                         <>
                             <p className='d-none d-md-block mb-0 fw-bold text-muted me-3'>
                                 Dobrodošli
@@ -32,9 +38,7 @@ const NavbarUserOnboarding = () => {
                                 </span>
                             </p>
 
-                            <button type="button" className="btn btn-danger px-2 py-1" onClick={logOutUser}>
-                                Odjavi se
-                            </button>
+                            <LogOutBtn />
                         </>
                     ) : (
                         <>
@@ -74,4 +78,4 @@ const NavbarUserOnboarding = () => {
     )
 }
 
-export default NavbarUserOnboarding
+export default HeaderTop
