@@ -1,47 +1,52 @@
+import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-// firebase/firestore funcs
-import { getAuth, signInWithEmailAndPassword } from 'firebase/auth'
+// pis
+import userLogin from '../api/userLogin.js'
 // utils func
 import closeModalOnSubmit from '../utils/closeModalOnSubmit.js'
 // app assets
 import logInModalImg from '../assets/header-assets/jeftine_kuce_login_bg.jpg'
 import appNameImg from '../assets/header-assets/jeftine_kuce_logo_text_whit_small.png'
+// components
+import ModalHeader from '../components/modals/ModalHeader.jsx'
+import ModalFooter from '../components/modals/ModalFooter.jsx'
+import FormInput from '../components/FormInput.jsx'
+import FormSubmitBtn from '../components/FormSubmitBtn.jsx'
 // toastify
 import { toast } from 'react-toastify'
 
 
 const LogIn = () => {
     const navigate = useNavigate()
+    const [isLoading, setIsLoading] = useState(false)
 
-    const handleLogInSubmit = e => {
+    const handleLogInSubmit = async e => {
         e.preventDefault()
+
+        setIsLoading(true)
 
         const enteredEmail = e.target.elements[0].value.trim()
         const enteredPassword = e.target.elements[1].value
 
-        logInUser(enteredEmail, enteredPassword)
+        const response = await userLogin(enteredEmail, enteredPassword)
 
-        e.target.elements[0].value = ''
-        e.target.elements[1].value = ''
-
-        // close Modal on Submit
-        closeModalOnSubmit('#logInModal')
-    }
-
-    const logInUser = async (enteredEmail, enteredPassword) => {
-        try {
-            const auth = getAuth()
-            await signInWithEmailAndPassword(auth, enteredEmail, enteredPassword)
-
+        if (response) {
             // success message
             toast.success('Uspešno ste se prijavili na portal "Jeftine kuće"')
 
+            // reset form data
+            e.target.elements[0].value = ''
+            e.target.elements[1].value = ''
+
+            // close Modal on Submit
+            closeModalOnSubmit('#logInModal')
+
             // after the user has logged in, the user is redirected to the Profile page
             navigate('/nalog')
-        } catch (error) {
-            // error message
-            toast.error('Kredencijale koje ste uneli nisu validni, molimo Vas probajte ponovo')
         }
+
+        // loading
+        setIsLoading(false)
     }
 
     return (
@@ -59,34 +64,16 @@ const LogIn = () => {
                         {/* row item 2 */}
                         <div className="col-12 col-xl-7 p-4">
                             {/* modal-header */}
-                            <div className="modal-header border-0">
-                                <h2 className="modal-title fw-bolder">
-                                    Prijava
-                                </h2>
-                                <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close" />
-                            </div>
+                            <ModalHeader label='Prijava' />
 
                             {/* modal-body */}
                             <div className="modal-body">
-                                {/* form */}
                                 <form onSubmit={handleLogInSubmit}>
-                                    <div className="mb-3">
-                                        <label htmlFor="userLogInEmail" className="col-form-label fw-bolder mb-1">
-                                            Email adresa (elektronska pošta)
-                                        </label>
-                                        <input type="email" className="form-control" id="userLogInEmail" placeholder="vaše email adresa" required />
-                                    </div>
-                                    <div className="mb-4">
-                                        <label htmlFor="userLogInPassword" className="col-form-label fw-bolder mb-1">
-                                            Lozinka
-                                        </label>
-                                        <input type="password" className="form-control" id="userLogInPassword" placeholder="vaše lozinka" required />
-                                    </div>
+                                    <FormInput name='email' label='Email adresa (elektronska pošta)' type='email' placeholder="vaša email adresa" maxLength={40} required={true} />
 
-                                    {/* submit btn */}
-                                    <button type="submit" className="log-in-btn btn bg-orange-hover fw-bolder text-white py-3 w-100 rounded-4">
-                                        Prijavite se
-                                    </button>
+                                    <FormInput name='password' label='Lozinka' type='password' placeholder="vaša lozinka" minLength={6} required={true} />
+
+                                    <FormSubmitBtn isLoading={isLoading} label='Prijavite se' />
                                 </form>
 
                                 {/* forgot password btn */}
@@ -98,14 +85,7 @@ const LogIn = () => {
                             </div>
 
                             {/* modal-footer */}
-                            <div className="modal-footer border-0 justify-content-center">
-                                <p>
-                                    Da li još uvek niste naš registrovani korisnik?
-                                </p>
-                                <button type="button" className="text-orange-hover btn p-0 m-0" data-bs-toggle="modal" data-bs-target="#signUpModal">
-                                    Registrujte se
-                                </button>
-                            </div>
+                            <ModalFooter text='Da li još uvek niste naš registrovani korisnik?' label='Registrujte se' target='#signUpModal' />
                         </div>
                     </div>
                 </div>

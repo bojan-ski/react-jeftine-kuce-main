@@ -7,6 +7,7 @@
 /* GOOGLE FONT - POPPINS */
 @import url("https://fonts.googleapis.com/css2?family=Mulish:ital,wght@0,200..1000;1,200..1000&display=swap");
 
+
 /* ---------- GENERAL ---------- */
 :root {
   /* colors */
@@ -90,6 +91,277 @@ textarea {
 }
 
 /* -------------------- APP (SHARED) COMPONENTS -------------------- */
+/* ---------- HEADER ---------- */
+#header {
+  background-color: #fff;
+}
+
+/* NavbarUserOnboarding component */
+#header .user-onboarding .navbar-brand img {
+  width: 197px;
+  height: 48px;
+}
+
+#header .user-onboarding .header-btn-container,
+#header .user-onboarding .header-btn-container button {
+  font-weight: 500;
+  font-size: 0.85rem;
+}
+
+#header .user-onboarding .header-btn-container .display-signUp-modal:hover,
+#header .user-onboarding .header-btn-container .display-logIn-modal:hover {
+  color: var(--orange-color);
+  transition: all 0.3s ease;
+}
+
+/* NavbarNavigation component */
+#header .navbar .home-btn {
+  padding: 15px 18px;
+  border-radius: 10px;
+  transition: all 0.3s ease;
+}
+
+#header .navbar .home-btn:hover {
+  transition: all 0.3s ease;
+}
+
+#header .navbar .navbar-toggler {
+  color: var(--orange-color);
+}
+
+#header .navbar .navbar-nav {
+  width: 100%;
+}
+
+@media (min-width: 768px) {
+  #header .navbar .navbar-nav {
+    width: 75%;
+  }
+}
+
+@media (min-width: 992px) {
+  #header .navbar .navbar-nav {
+    width: 50%;
+  }
+}
+
+#header .navbar .navbar-nav .nav-item a {
+  color: var(--dark-color);
+  transition: all 0.3s ease;
+}
+
+@media (max-width: 768px) {
+  #header .navbar .navbar-nav .nav-item {
+    text-align: center;
+    margin: 10px 0;
+  }
+}
+
+#header .navbar .navbar-nav .nav-item a:hover,
+#header .navbar .navbar-nav .nav-item a.active {
+  color: var(--orange-color);
+  transition: all 0.3s ease;
+}
+
+/* MODALS */
+/* AUTH Modals - Sing Up, LogIn, Forgot Password */
+#signUpModal,
+#logInModal,
+#forgotPasswordModal {
+  font-size: 0.88rem;
+}
+
+#signUpModal .modal-content .form-control,
+#logInModal .modal-content .form-control,
+#forgotPasswordModal .modal-content .form-control {
+  padding: 12px 14px;
+}
+
+#signUpModal .modal-content .modal-footer .btn,
+#logInModal .modal-content .modal-footer .btn,
+#logInModal .modal-content .forgot-password-container .btn,
+#forgotPasswordModal .modal-content .modal-footer .btn {
+  font-size: 14px;
+}
+
+#logInModal .modal-content .forgot-password-container .btn:hover {
+  color: var(--dark-orange-color);
+}
+
+#signUpModal .modal-content .modal-images,
+#forgotPasswordModal .modal-content .col-5 {
+  position: relative;
+}
+
+#signUpModal .modal-content .modal-images .modal-img-2,
+#logInModal .modal-content .modal-images .modal-img-2,
+#forgotPasswordModal .modal-content .modal-images .modal-img-2 {
+  width: 200px;
+  position: absolute;
+  left: 60px;
+  bottom: 40px;
+}
+
+/* Sing Up, Post New Listing */
+.form-btn,
+.form-btn-active {
+  padding: 5px 10px;
+  margin-right: 7px;
+  border-radius: 5px;
+}
+
+.form-btn {
+  background-color: #fff;
+  border: 1px solid var(--dark-orange-color);
+}
+
+.form-btn-active {
+  background-color: var(--dark-orange-color);
+  border: 1px solid transparent;
+  color: #fff;
+}
+
+/* ---------- MAIN ---------- */
+main {
+  flex: 1;
+}
+
+/* PageLocation Component */
+.page-location {
+  font-size: 0.75rem;
+}
+
+.page-location .home-link {
+  color: var(--orange-color);
+}
+
+.page-location .home-link:hover {
+  color: var(--dark-orange-color);
+}
+
+.page-location .home-link:after {
+  content: ">";
+  color: var(--dark-color);
+  margin: 0 12px;
+  font-weight: 500;
+}
+
+/* ---------- FOOTER ---------- */
+#footer {
+  background: #1c1c1e;
+  padding-top: 100px;
+}
+
+/* MainFooterContent component */
+#footer .main-footer-content .contact-info-box {
+  background-color: rgb(255, 245, 224);
+  padding: 30px 31px 45px;
+}
+
+#footer .main-footer-content .contact-info-box .box-icon img {
+  transition: transform 0.4s ease-in;
+}
+
+#footer .main-footer-content .contact-info-box .box-icon img:hover {
+  transform: scaleX(-1);
+}
+
+#footer .main-footer-content .contact-info-box .box-footer {
+  margin-top: -10px;
+}
+
+#footer .main-footer-content .widget-info {
+  font-size: 0.88rem;
+}
+
+#footer .main-footer-content .widget-info .sub-title,
+#footer
+  .main-footer-content
+  .widget-info
+  .footer-category-links
+  .footer-category-link
+  a {
+  color: var(--gray-color);
+}
+
+#footer
+  .main-footer-content
+  .widget-info
+  .footer-category-links
+  .footer-category-link
+  a:hover {
+  color: rgb(226, 151, 31);
+  transition: var(--transition-ease);
+}
+
+.footer-category-links .footer-category-link:hover a::before {
+  opacity: 0;
+  visibility: hidden;
+  margin-right: 0;
+}
+
+.footer-category-links .footer-category-link a::before {
+  content: ">";
+  color: var(--orange-color);
+  margin-right: 10px;
+  transition: var(--transition-ease);
+}
+
+#footer .main-footer-content .widget-info form input,
+#footer .main-footer-content .widget-info form label {
+  font-size: 0.7rem;
+}
+
+#footer .main-footer-content .widget-info form input:focus {
+  border-color: var(--orange-color);
+  box-shadow: none;
+}
+
+#footer .main-footer-content .widget-info form .form-check-input {
+  background-color: var(--dark-gray-color);
+  border: none;
+  font-size: 14px;
+}
+
+#footer .main-footer-content .widget-info form .form-check-input:checked {
+  background-color: var(--orange-color);
+}
+
+#footer .main-footer-content .widget-info form .footer-form-btn {
+  padding: 12px;
+  background-color: var(--dark-gray-color);
+}
+
+#footer .main-footer-content .widget-info form .footer-form-btn:hover {
+  background-color: var(--orange-color);
+}
+
+/* NavAndSocialFooterLinks component */
+#footer .footer-links {
+  border-top: 1px solid var(--dark-gray-color);
+  border-bottom: 1px solid var(--dark-gray-color);
+}
+
+#footer .footer-links .footer-nav-links .footer-nav-link a {
+  color: #fff;
+}
+
+#footer .footer-links .footer-nav-links .footer-nav-link a:hover {
+  color: var(--orange-color);
+  transition: all 0.3s ease;
+}
+
+#footer .footer-links .footer-social-links .footer-social-link a {
+  background-color: #120a21;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+#footer .footer-links .footer-social-links .footer-social-link a:hover {
+  background-color: var(--orange-color);
+  transition: var(--transition-ease);
+}
+
 /* LOADER (PRELOAD) - LOADING PAGE */
 .preload {
   overflow: hidden;
@@ -317,142 +589,7 @@ textarea {
   color: #fff;
 }
 
-/* -------------------- APP COMPONENTS -------------------- */
-/* ---------- HEADER ---------- */
-#header {
-  background-color: #fff;
-}
-
-/* NavbarUserOnboarding component */
-#header .user-onboarding .navbar-brand img {
-  width: 197px;
-  height: 48px;
-}
-
-#header .user-onboarding .header-btn-container,
-#header .user-onboarding .header-btn-container button {
-  font-weight: 500;
-  font-size: 0.85rem;
-}
-
-#header .user-onboarding .header-btn-container .display-signUp-modal:hover,
-#header .user-onboarding .header-btn-container .display-logIn-modal:hover {
-  color: var(--orange-color);
-  transition: all 0.3s ease;
-}
-
-/* NavbarNavigation component */
-#header .navbar .home-btn {
-  padding: 15px 18px;
-  border-radius: 10px;
-  transition: all 0.3s ease;
-}
-
-#header .navbar .home-btn:hover {
-  transition: all 0.3s ease;
-}
-
-#header .navbar .navbar-toggler {
-  color: var(--orange-color);
-}
-
-#header .navbar .navbar-nav {
-  width: 100%;
-}
-
-@media (min-width: 768px) {
-  #header .navbar .navbar-nav {
-    width: 75%;
-  }
-}
-
-@media (min-width: 992px) {
-  #header .navbar .navbar-nav {
-    width: 50%;
-  }
-}
-
-#header .navbar .navbar-nav .nav-item a {
-  color: var(--dark-color);
-  transition: all 0.3s ease;
-}
-
-@media (max-width: 768px) {
-  #header .navbar .navbar-nav .nav-item {
-    text-align: center;
-    margin: 10px 0;
-  }
-}
-
-#header .navbar .navbar-nav .nav-item a:hover,
-#header .navbar .navbar-nav .nav-item a.active {
-  color: var(--orange-color);
-  transition: all 0.3s ease;
-}
-
-/* Registration Modals - Sing Up, LogIn, Forgot Password */
-#signUpModal,
-#logInModal,
-#forgotPasswordModal {
-  font-size: 0.88rem;
-}
-
-#signUpModal .modal-content .form-control,
-#logInModal .modal-content .form-control,
-#forgotPasswordModal .modal-content .form-control {
-  padding: 12px 14px;
-}
-
-#signUpModal .modal-content .modal-footer .btn,
-#logInModal .modal-content .modal-footer .btn,
-#logInModal .modal-content .forgot-password-container .btn,
-#forgotPasswordModal .modal-content .modal-footer .btn {
-  font-size: 14px;
-}
-
-#logInModal .modal-content .forgot-password-container .btn:hover {
-  color: var(--dark-orange-color);
-}
-
-#signUpModal .modal-content .modal-images,
-#forgotPasswordModal .modal-content .col-5 {
-  position: relative;
-}
-
-#signUpModal .modal-content .modal-images .modal-img-2,
-#logInModal .modal-content .modal-images .modal-img-2,
-#forgotPasswordModal .modal-content .modal-images .modal-img-2 {
-  width: 200px;
-  position: absolute;
-  left: 60px;
-  bottom: 40px;
-}
-
-/* ---------- MAIN ---------- */
-main {
-  flex: 1;
-}
-
-/* PageLocation Component */
-.page-location {
-  font-size: 0.75rem;
-}
-
-.page-location .home-link {
-  color: var(--orange-color);
-}
-
-.page-location .home-link:hover {
-  color: var(--dark-orange-color);
-}
-
-.page-location .home-link:after {
-  content: ">";
-  color: var(--dark-color);
-  margin: 0 12px;
-  font-weight: 500;
-}
-
+/* -------------------- PAGES -------------------- */
 /* DASHBOARD PAGE */
 /* Hero component */
 .hero {
@@ -665,26 +802,6 @@ main {
   width: 100%;
 }
 
-/* PROFILE PAGE */
-/* PostNewListing component (Modal) */
-.form-btn,
-.form-btn-active {
-  padding: 5px 10px;
-  margin-right: 7px;
-  border-radius: 5px;
-}
-
-.form-btn {
-  background-color: #fff;
-  border: 1px solid var(--dark-orange-color);
-}
-
-.form-btn-active {
-  background-color: var(--dark-orange-color);
-  border: 1px solid transparent;
-  color: #fff;
-}
-
 /* CONTRACT PAGE */
 /* ContactDetails component */
 .contact-page .contact-info .box-info .icon-info:after {
@@ -796,120 +913,4 @@ main {
 
 .error-page {
   height: 100vh;
-}
-
-/* ---------- FOOTER ---------- */
-#footer {
-  background: #1c1c1e;
-  padding-top: 100px;
-}
-
-/* MainFooterContent component */
-#footer .main-footer-content .contact-info-box {
-  background-color: rgb(255, 245, 224);
-  padding: 30px 31px 45px;
-}
-
-#footer .main-footer-content .contact-info-box .box-icon img {
-  transition: transform 0.4s ease-in;
-}
-
-#footer .main-footer-content .contact-info-box .box-icon img:hover {
-  transform: scaleX(-1);
-}
-
-#footer .main-footer-content .contact-info-box .box-footer {
-  margin-top: -10px;
-}
-
-#footer .main-footer-content .widget-info {
-  font-size: 0.88rem;
-}
-
-#footer .main-footer-content .widget-info .sub-title,
-#footer
-  .main-footer-content
-  .widget-info
-  .footer-category-links
-  .footer-category-link
-  a {
-  color: var(--gray-color);
-}
-
-#footer
-  .main-footer-content
-  .widget-info
-  .footer-category-links
-  .footer-category-link
-  a:hover {
-  color: rgb(226, 151, 31);
-  transition: var(--transition-ease);
-}
-
-.footer-category-links .footer-category-link:hover a::before {
-  opacity: 0;
-  visibility: hidden;
-  margin-right: 0;
-}
-
-.footer-category-links .footer-category-link a::before {
-  content: ">";
-  color: var(--orange-color);
-  margin-right: 10px;
-  transition: var(--transition-ease);
-}
-
-#footer .main-footer-content .widget-info form input,
-#footer .main-footer-content .widget-info form label {
-  font-size: 0.7rem;
-}
-
-#footer .main-footer-content .widget-info form input:focus {
-  border-color: var(--orange-color);
-  box-shadow: none;
-}
-
-#footer .main-footer-content .widget-info form .form-check-input {
-  background-color: var(--dark-gray-color);
-  border: none;
-  font-size: 14px;
-}
-
-#footer .main-footer-content .widget-info form .form-check-input:checked {
-  background-color: var(--orange-color);
-}
-
-#footer .main-footer-content .widget-info form .footer-form-btn {
-  padding: 12px;
-  background-color: var(--dark-gray-color);
-}
-
-#footer .main-footer-content .widget-info form .footer-form-btn:hover {
-  background-color: var(--orange-color);
-}
-
-/* NavAndSocialFooterLinks component */
-#footer .footer-links {
-  border-top: 1px solid var(--dark-gray-color);
-  border-bottom: 1px solid var(--dark-gray-color);
-}
-
-#footer .footer-links .footer-nav-links .footer-nav-link a {
-  color: #fff;
-}
-
-#footer .footer-links .footer-nav-links .footer-nav-link a:hover {
-  color: var(--orange-color);
-  transition: all 0.3s ease;
-}
-
-#footer .footer-links .footer-social-links .footer-social-link a {
-  background-color: #120a21;
-  border-radius: 50%;
-  border: 1px solid rgba(255, 255, 255, 0.2);
-}
-
-#footer .footer-links .footer-social-links .footer-social-link a:hover {
-  background-color: var(--orange-color);
-  transition: var(--transition-ease);
 }

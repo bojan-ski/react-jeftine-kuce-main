@@ -1,45 +1,48 @@
+import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-// firebase/firestore funcs
-import { getAuth, sendPasswordResetEmail } from 'firebase/auth'
+// api
+import userResetPassword from '../api/userResetPassword.js'
 // utils func
 import closeModalOnSubmit from '../utils/closeModalOnSubmit.js'
 // app assets
 import forgotPasswordModalImg from '../assets/header-assets/forgot_password.jpg'
 import appNameImg from '../assets/header-assets/jeftine_kuce_logo_text_whit_small.png'
+// components
+import ModalHeader from '../components/modals/ModalHeader.jsx'
+import ModalFooter from '../components/modals/ModalFooter.jsx'
+import FormSubmitBtn from '../components/FormSubmitBtn.jsx'
+import FormInput from '../components/FormInput.jsx'
 // toastify
 import { toast } from 'react-toastify'
 
 
 const ForgotPassword = () => {
     const navigate = useNavigate()
+    const [isLoading, setIsLoading] = useState(false)
 
-    const handleNewPasswordSubmit = (e) =>{
+    const handleNewPasswordSubmit = async (e) => {
         e.preventDefault()
 
         const enteredEmail = e.target.elements[0].value.trim()
 
-        resetPassword(enteredEmail)
+        const response = await userResetPassword(enteredEmail)
 
-        e.target.elements[0].value = ''
-
-        // close Modal on Submit
-        closeModalOnSubmit('#forgotPasswordModal')
-    }
-
-    const resetPassword = async (enteredEmail) => {
-        try {
-            const auth = getAuth()
-            await sendPasswordResetEmail(auth, enteredEmail)
-
+        if (response) {
             // success message
             toast.success('Proverite vaš email radi promere šifre');
 
+            // reset form data
+            e.target.elements[0].value = ''
+
+            // close Modal on Submit
+            closeModalOnSubmit('#forgotPasswordModal')
+
             // after the user has submitted for a new password, the user is redirected to the Profile page
             navigate('/nalog')
-        } catch (error) {
-            // error message
-            toast.error('Email adresu koju ste uneli nije validna, molimo Vas probajte ponovo')
         }
+
+        // loading
+        setIsLoading(false)
     }
 
     return (
@@ -57,37 +60,19 @@ const ForgotPassword = () => {
                         {/* row item 2 */}
                         <div className="col-12 col-xl-7 p-4">
                             {/* modal-header */}
-                            <div className="modal-header border-0">
-                                <h2 className="modal-title fw-bolder">
-                                    Zaboraviliste šifru?
-                                </h2>
-                                <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"/>
-                            </div>
+                            <ModalHeader label='Zaboraviliste šifru?' />
 
                             {/* modal-body */}
                             <div className="modal-body">
                                 <form onSubmit={handleNewPasswordSubmit}>
-                                    <div className="mb-4">
-                                        <label htmlFor="userEmail" className="col-form-label fw-bolder mb-1">
-                                            Email adresa (elektronska pošta)
-                                        </label>
-                                        <input type="email" className="form-control" id="userEmail" placeholder="vaše email adresa" required />
-                                    </div>
-                                    <button type="submit" className="forgot-password-btn btn bg-orange-hover fw-bolder text-white py-3 w-100 rounded-4">
-                                        Nova Šifra
-                                    </button>
+                                    <FormInput name='email' label='Email adresa (elektronska pošta)' type='email' placeholder="vaša email adresa" maxLength={40} required={true} />
+
+                                    <FormSubmitBtn isLoading={isLoading} label='Nova Šifra' />
                                 </form>
                             </div>
 
-                             {/* modal-footer */}
-                             <div className="modal-footer border-0 justify-content-center">
-                                <p>
-                                    Ne treba vam nova lozinka?
-                                </p>
-                                <button type="button" className="text-orange-hover btn p-0 m-0" data-bs-toggle="modal" data-bs-target="#logInModal">
-                                    Prijavite se
-                                </button>
-                            </div>
+                            {/* modal-footer */}
+                            <ModalFooter text='Ne treba vam nova lozinka?' label='Prijavite se' target='#logInModal' />
                         </div>
                     </div>
                 </div>

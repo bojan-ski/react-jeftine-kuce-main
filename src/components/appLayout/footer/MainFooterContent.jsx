@@ -41,7 +41,7 @@ const MainFooterContent = () => {
                             </div>
                         </div>
                         <div className="box-footer text-center">
-                            <Link to='/kontakt' className="bg-orange-hover text-white px-5 py-3 rounded-3">
+                            <Link to='/kontakt' className="bg-orange-hover text-white px-5 py-3 rounded-3" onClick={() => scrollToTop()}>
                                 Kontakt
                             </Link>
                         </div>
@@ -65,7 +65,7 @@ const MainFooterContent = () => {
                             </div>
                         </div>
                         <div className="box-footer text-center">
-                            <Link to='/kontakt' className="bg-orange-hover text-white px-5 py-3 rounded-3">
+                            <Link to='/kontakt' className="bg-orange-hover text-white px-5 py-3 rounded-3" onClick={() => scrollToTop()}>
                                 Kontakt
                             </Link>
                         </div>
@@ -127,7 +127,7 @@ const MainFooterContent = () => {
                                         Telefon:
                                     </p>
                                     <p className="mb-1">
-                                        +381 63 31 27 62
+                                        +381 66 63 12 762
                                     </p>
                                     <p className="sub-title mb-1">
                                         Elektronska pošta:

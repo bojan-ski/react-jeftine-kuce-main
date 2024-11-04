@@ -15,7 +15,6 @@ import { toast } from "react-toastify";
 const PostNewListingModal = () => {
     const { userData } = useGlobalContext()
     const { userID, userName, userVerified } = userData
-
     const [isLoading, setIsLoading] = useState(false);
     const [formData, setFormData] = useState({
         userRef: userID,
@@ -373,8 +372,8 @@ const PostNewListingModal = () => {
                                         />
                                     </div>
 
-                                    {/* property district */}
-                                    <div className="mb-3">
+                                     {/* property district */}
+                                     <div className="mb-3">
                                         <label className='form-label fw-bold'>
                                             Okrug
                                         </label>
