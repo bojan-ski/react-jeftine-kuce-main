@@ -2,7 +2,8 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 // react icons
 import { FaFacebookF, FaLinkedin } from "react-icons/fa"
-import { BsInstagram, BsTwitter, BsYoutube } from "react-icons/bs"
+import { BsInstagram, BsYoutube } from "react-icons/bs"
+import { FaXTwitter } from 'react-icons/fa6'
 
 
 const SocialLinks = () => {
@@ -15,7 +16,7 @@ const SocialLinks = () => {
             </li>
             <li className="social-link me-2">
                 <Link to='https://twitter.com/i/flow/login?redirect_after_login=%2Fjeftinekuce' className="text-white fw-bold p-2" target="_blank">
-                    <BsTwitter size={20} />
+                    <FaXTwitter size={20} />
                 </Link>
             </li>
             <li className="social-link me-2">

@@ -11,6 +11,10 @@ import headerLogo from '../../../assets/header-assets/jeftine_kuce_logo_text_whi
 
 
 const HeaderNavigation = () => {
+    const closeNavbar = () =>{
+        document.querySelector('.navbar-collapse').classList.remove('show')
+    }
+
     return (
         <nav className="navbar navbar-expand-md">
             <div className="container-fluid">
@@ -36,7 +40,7 @@ const HeaderNavigation = () => {
                     <ul className="navbar-nav ms-auto justify-content-around">
                         {appNavigationLinks.map(link => {
                             return <li className="nav-item" key={link.label}>
-                                <NavLink to={link.href} className="fw-bold me-1">
+                                <NavLink to={link.href} className="fw-bold me-1" onClick={closeNavbar}>
                                     {link.label}
                                 </NavLink>
                             </li>

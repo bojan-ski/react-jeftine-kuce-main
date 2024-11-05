@@ -1,39 +1,45 @@
-import { useLoaderData } from "react-router-dom";
-// api func
-import fetchAllBlogPostsFromFirebase from "../api/fetchAllBlogPostsFromFirebase.js";
+import { useEffect, useState } from "react";
+// context
+import { useGlobalContext } from "../context.jsx";
 // components
 import PageLocation from "../components/PageLocation.jsx"
+import PageHeader from "../components/PageHeader.jsx";
 import NoDataAvailableMessage from "../components/NoDataAvailableMessage.jsx";
+import BlogPageSearchOption from "../components/blogPage/BlogPageSearchOption.jsx";
 import BlogPostsContainer from "../components/blogPage/BlogPostsContainer.jsx";
 
 
-// REACT QUERY
-const fetchAllBlogPostsFromFirebaseQuery = {
-  queryKey: ['allBlogPosts'],
-  queryFn: () => fetchAllBlogPostsFromFirebase()
-}
-
-// LOADER
-export const loader = (queryClient) => async () => {
-  const allBlogPosts = await queryClient.ensureQueryData(fetchAllBlogPostsFromFirebaseQuery)
-
-  return allBlogPosts
-}
-
 const Blog = () => {
-  const allBlogPosts = useLoaderData()
+  const { blogPosts, fetchBlogPosts, curBlogPage } = useGlobalContext()
+  // search feature - state
+  const [searchTerm, setSearchTerm] = useState('')
+
+  // Fetch the first page on mount
+  useEffect(() => {
+    console.log('Blog page - useEffect');
+
+    if (blogPosts.length == 0 && searchTerm == '') {
+      console.log('get data');
+
+      fetchBlogPosts();
+    }
+  }, [])
 
   return (
     <div className="blog-page">
       {/* page location */}
       <PageLocation />
 
+      <PageHeader title="Blog" />
+
       <div className="container">
 
-        {!allBlogPosts || allBlogPosts.length == 0 ? (
+        <BlogPageSearchOption searchTerm={searchTerm} setSearchTerm={setSearchTerm} fetchBlogPosts={fetchBlogPosts} />
+
+        {!blogPosts || blogPosts.length == 0 ? (
           <NoDataAvailableMessage text='Blog post-ova' />
         ) : (
-          <BlogPostsContainer />
+          <BlogPostsContainer blogPosts={blogPosts} />
         )}
       </div>
     </div>

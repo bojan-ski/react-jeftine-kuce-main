@@ -8,6 +8,9 @@ import usePostedListings from "./hooks/usePostedListings";
 import { toast } from 'react-toastify'
 
 
+import useFetchBlogPageData from "./hooks/useFetchBlogPageData";
+
+
 const AppContext = createContext()
 
 export const AppProvider = ({ children }) => {
@@ -44,9 +47,9 @@ export const AppProvider = ({ children }) => {
     }, [])
 
     // display listings
-    const itemsPerPage = 9;
-    const { listings, fetchListings, page } = usePostedListings(itemsPerPage); 
-    
+    const itemsPerListingsPage = 9;
+    const { listings, fetchListings, page } = usePostedListings(itemsPerListingsPage);
+
     // filter option
     const navigate = useNavigate()
     const [condition, setCondition] = useState()
@@ -62,22 +65,26 @@ export const AppProvider = ({ children }) => {
     const handleSubmittedFilterOptions = e => {
         e.preventDefault()
 
-        if(condition != undefined){
+        if (condition != undefined) {
             setDisableOption(true)
-    
+
             fetchListings(0, condition)
         }
 
-        if(window.location.pathname != '/oglasi') navigate('/oglasi')        
+        if (window.location.pathname != '/oglasi') navigate('/oglasi')
     }
 
-    const handleReset = () => {        
+    const handleReset = () => {
         setDisableOption(false)
-    
+
         setCondition()
-    
+
         fetchListings()
-      } 
+    }
+
+    // BLOG PAGE   
+    const itemsPerBlogPage = 12;
+    const { blogPosts, fetchBlogPosts, curBlogPage } = useFetchBlogPageData(itemsPerBlogPage)
 
     return <AppContext.Provider value={{
         userData, //Profile, NavbarUserOnboarding, UserLoggedIn, PostNewListingModal
@@ -95,6 +102,10 @@ export const AppProvider = ({ children }) => {
         handleSelectedFilterOption, // FilterOptions
         handleSubmittedFilterOptions, // PostedListingsFilterOptions, DashboardFilterOptions
         handleReset, // PostedListingsFilterOptions, PostedListingsSearchOption
+
+        blogPosts, 
+        fetchBlogPosts, 
+        curBlogPage
     }}>
         {children}
     </AppContext.Provider>

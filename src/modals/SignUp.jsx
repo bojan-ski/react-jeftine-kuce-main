@@ -91,7 +91,7 @@ const SignUp = () => {
 
                                     <FormInput name='password' label='Lozinka (min 6 karaktera)' type='password' placeholder="vaša lozinka" minLength={6} required={true} />
 
-                                    <FormInput name='password' label='Potvrda lozinke (min 6 karaktera)' type='password' placeholder="potvrda vaše lozinke" minLength={6} required={true} />
+                                    <FormInput name='confirmPassword' label='Potvrda lozinke (min 6 karaktera)' type='password' placeholder="potvrda vaše lozinke" minLength={6} required={true} />
 
                                     <FormSubmitBtn isLoading={isLoading} label='Registrujte se' />
                                 </form>

@@ -16,11 +16,10 @@ import ErrorPage from "./pages/ErrorPage.jsx"
 // LOADERS
 import { loader as selectedListingLoader } from "./pages/SelectedListing.jsx"
 import { loader as userPostedListingsLoader } from "./pages/Profile.jsx"
-import { loader as allBlogPostsLoader } from "./pages/Blog.jsx"
 import { loader as selectedBlogPostLoader } from "./pages/SelectedBlogPost.jsx"
 
 
-const queryClient = new QueryClient()
+// const queryClient = new QueryClient()
 
 const router = createBrowserRouter([
   {
@@ -39,7 +38,8 @@ const router = createBrowserRouter([
       {
         path: '/oglasi/:id',
         element: <SelectedListing />,
-        loader: selectedListingLoader(queryClient)
+        loader: selectedListingLoader
+        // loader: selectedListingLoader(queryClient)
       },
       {
         path: '/nalog',
@@ -49,17 +49,18 @@ const router = createBrowserRouter([
       {
         path: '/nalog/:id',
         element: <SelectedListing />,
-        loader: selectedListingLoader(queryClient)
+        loader: selectedListingLoader
+        // loader: selectedListingLoader(queryClient)
       },
       {
         path: '/blog',
         element: <Blog />,
-        loader: allBlogPostsLoader(queryClient)
       },
       {
         path: '/blog/:id',
         element: <SelectedBlogPost />,
-        loader: selectedBlogPostLoader(queryClient)
+        loader: selectedBlogPostLoader
+        // loader: selectedBlogPostLoader(queryClient)
       },
       {
         path: '/kontakt',
@@ -71,9 +72,9 @@ const router = createBrowserRouter([
 
 const App = () => {
   return (
-    <QueryClientProvider client={queryClient}>
+    // <QueryClientProvider client={queryClient}>
       <RouterProvider router={router} />
-    </QueryClientProvider>
+    // </QueryClientProvider>
   )
 }
 

@@ -6,7 +6,7 @@ const PageLocation = () => {
     return (
         <div className="page-location">
             <div className="container">
-                <div className="border-bottom py-4 mb-4">
+                <div className="border-bottom py-4 mb-5">
                     <Link to='/' className="home-link fw-bold">
                         Početna
                     </Link>
