@@ -7,9 +7,11 @@ import AppLayout from "./pages/AppLayout.jsx"
 import Dashboard from "./pages/Dashboard.jsx"
 import PostedListings from "./pages/PostedListings.jsx"
 import SelectedListing from "./pages/SelectedListing.jsx"
+import Agencies from "./pages/Agencies.jsx"
 import Profile from "./pages/Profile.jsx"
 import Blog from "./pages/Blog.jsx"
 import SelectedBlogPost from "./pages/SelectedBlogPost.jsx"
+import AboutUs from "./pages/AboutUs.jsx"
 import Contact from "./pages/Contact.jsx"
 import ErrorPage from "./pages/ErrorPage.jsx"
 
@@ -17,6 +19,7 @@ import ErrorPage from "./pages/ErrorPage.jsx"
 import { loader as selectedListingLoader } from "./pages/SelectedListing.jsx"
 import { loader as userPostedListingsLoader } from "./pages/Profile.jsx"
 import { loader as selectedBlogPostLoader } from "./pages/SelectedBlogPost.jsx"
+
 
 
 const queryClient = new QueryClient()
@@ -42,6 +45,10 @@ const router = createBrowserRouter([
         // loader: selectedListingLoader(queryClient)
       },
       {
+        path: '/agencije',
+        element: <Agencies />,
+      },
+      {
         path: '/nalog',
         element: <Profile />,
         loader: userPostedListingsLoader
@@ -60,6 +67,10 @@ const router = createBrowserRouter([
         path: '/blog/:id',
         element: <SelectedBlogPost />,
         loader: selectedBlogPostLoader(queryClient)
+      },
+      {
+        path: '/o_nama',
+        element: <AboutUs />
       },
       {
         path: '/kontakt',

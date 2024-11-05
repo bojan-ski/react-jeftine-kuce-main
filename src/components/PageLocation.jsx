@@ -11,7 +11,7 @@ const PageLocation = () => {
                         Početna
                     </Link>
                     <span className="text-capitalize">
-                        {currentPage == 'nalog' ? 'moj nalog' : currentPage}
+                        {currentPage === 'nalog' ? 'moj nalog' : currentPage === 'o_nama' ? 'o nama' : currentPage}
                     </span>
                 </div>
             </div>

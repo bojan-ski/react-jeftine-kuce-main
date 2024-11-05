@@ -16,7 +16,7 @@ const HeaderNavigation = () => {
     }
 
     return (
-        <nav className="navbar navbar-expand-md">
+        <nav className="navbar navbar-expand-md my-1">
             <div className="container-fluid">
                 {/* home btn - link */}
                 <Link className="home-btn bg-orange-hover px-2 py-2" to="/">

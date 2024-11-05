@@ -43,7 +43,7 @@ const ContactForm = () => {
     }
 
     return (
-        <section className="contact-form py-3">
+        <section className="contact-form py-4">
             <div className="container">
 
                 <div className="form-area rounded-4 py-5 px-4 mx-lg-5">
