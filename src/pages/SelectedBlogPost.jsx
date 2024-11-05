@@ -1,6 +1,9 @@
-import { useLoaderData, Link } from "react-router-dom";
+import { useLoaderData } from "react-router-dom";
 // api func
 import fetchSelectedBlogPostFromFirebase from '../api/fetchSelectedBlogPostFromFirebase'
+// components
+import BackButton from "../components/BackButton";
+import SelectedBlogPostContent from "../components/selectedBlogPostPage/SelectedBlogPostContent";
 
 
 // REACT QUERY
@@ -20,31 +23,30 @@ export const loader = (queryClient) => async ({ params }) => {
 
 const SelectedBlogPost = () => {
     const selectedBlogPost = useLoaderData()
-    const { blogTitle, blogContent, blogCreated } = selectedBlogPost
 
     return (
-        <div className="selected-blog-post-page py-5">
-            <div className="container py-3 px-5 rounded-4 bg-white">
+        <div className="selected-blog-post-page py-5 px-3">
+            <div className="row">
 
-                <div className="blog-post-details">
-                    <section className="d-flex align-items-center justify-content-between mt-5 mb-4">
-                        <Link to='/blog' className="btn bg-orange-hover text-white fw-bold px-4">
-                            Nazad
-                        </Link>
-                        <p className="fw-bold mb-0">
-                            <span className="text-muted me-2">Blog objavljen:</span>
-                            {blogCreated}
-                        </p>
-                    </section>
+                {/* row item 1 */}
+                <div className="col-2 text-center mt-5">
+                    {selectedBlogPost.newBlogPostPromoImgOneUrl && (
+                        <img src={selectedBlogPost.newBlogPostPromoImgOneUrl} alt="promo-img" className="img-fluid rounded-3 mt-5" style={{ objectFit: 'cover', height: '580px' }} />
+                    )}
+                </div>
 
-                    <section>
-                        <h2 className="text-center mb-4">
-                            {blogTitle}
-                        </h2>
-                        <p className="fw-bold">
-                            {blogContent}
-                        </p>
-                    </section>
+                {/* row item 2 */}
+                <div className="col-8">
+                    <BackButton backPath='/blog' />
+
+                    <SelectedBlogPostContent selectedBlogPost={selectedBlogPost} />
+                </div>
+
+                {/* row item 3 */}
+                <div className="col-2 text-center mt-5">
+                    {selectedBlogPost.newBlogPostPromoImgTwoUrl && (
+                        <img src={selectedBlogPost.newBlogPostPromoImgTwoUrl} alt="promo-img" className="img-fluid rounded-3 mt-5" style={{ objectFit: 'cover', height: '580px' }} />
+                    )}
                 </div>
             </div>
         </div>

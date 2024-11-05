@@ -1,10 +1,12 @@
 import React from 'react'
 import { Link } from "react-router-dom";
+// utils
+import scrollToTop from '../../utils/scrollToTop';
 
 
 const BlogPostsCard = ({ blogPost }) => {
     const { blogPostID, blogPostData } = blogPost
-    const {newBlogPostTitle, newBlogPostContentOne, newBlogPostCreated} = blogPostData
+    const { newBlogPostTitle, newBlogPostContentOne, newBlogPostCreated } = blogPostData
 
     return (
         <div className="col-12 col-lg-6 col-xl-4 p-3">
@@ -19,7 +21,7 @@ const BlogPostsCard = ({ blogPost }) => {
                 </div>
 
                 <div className="blog-post-card-footer d-flex align-items-center justify-content-between">
-                    <Link to={`/blog/${blogPostID}`} className="btn bg-orange-hover text-white fw-bold py-2 px-3">
+                    <Link to={`/blog/${blogPostID}`} className="btn bg-orange-hover text-white fw-bold py-2 px-3" onClick={() => scrollToTop()}>
                         Pročitaj više
                     </Link>
                     <p className="fw-bold mb-0">

@@ -19,7 +19,7 @@ import { loader as userPostedListingsLoader } from "./pages/Profile.jsx"
 import { loader as selectedBlogPostLoader } from "./pages/SelectedBlogPost.jsx"
 
 
-// const queryClient = new QueryClient()
+const queryClient = new QueryClient()
 
 const router = createBrowserRouter([
   {
@@ -59,8 +59,7 @@ const router = createBrowserRouter([
       {
         path: '/blog/:id',
         element: <SelectedBlogPost />,
-        loader: selectedBlogPostLoader
-        // loader: selectedBlogPostLoader(queryClient)
+        loader: selectedBlogPostLoader(queryClient)
       },
       {
         path: '/kontakt',
@@ -72,9 +71,9 @@ const router = createBrowserRouter([
 
 const App = () => {
   return (
-    // <QueryClientProvider client={queryClient}>
+    <QueryClientProvider client={queryClient}>
       <RouterProvider router={router} />
-    // </QueryClientProvider>
+    </QueryClientProvider>
   )
 }
 
