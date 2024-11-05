@@ -1,91 +1,40 @@
-import { useEffect, useState } from "react"
-// utils func 
-import scrollToTop from "../utils/scrollToTop.js"
+// utils func
+import scrollToTop from "../utils/scrollToTop";
 // React Icons
 import { GrNext, GrPrevious } from "react-icons/gr"
 
 
-let pointA = 0
-let pointB = 9
-
-const Pagination = ({ dataLength, setDisplayedContent }) => {
-    const [currentPageNumber, setCurrentPageNumber] = useState(1)
-
-    useEffect(()=>{
-        pointA = 0
-        pointB = 9
-    },[])
-
-    const paginationOption = (term) => {
-        if (term === 'plus') {
-            pointA += 9
-            pointB += 9
-            setCurrentPageNumber(curPageNum => curPageNum + 1)
-        }
-
-        if (term === 'minus') {
-            pointA -= 9
-            pointB -= 9
-            setCurrentPageNumber(curPageNum => curPageNum - 1)
-        }
-
-        if (pointB == 0) {
-            setDisplayedContent(currData => ({
-                ...currData,
-                displayedDataList: currData.totalDataList.slice(0, 9)
-            }))
-            pointA = 0
-            pointB = 9
-            setCurrentPageNumber(1)
-        } else if (pointB > dataLength.length && pointA >= dataLength.length) {
-            setDisplayedContent(currData => ({
-                ...currData,
-                displayedDataList: currData.totalDataList.slice(0, 9)
-            }))
-            pointA = 0
-            pointB = 9
-            setCurrentPageNumber(1)
-        } else if (pointB > dataLength.length) {
-            const lastPostedListings = dataLength.length - pointA
-            setDisplayedContent(currData => ({
-                ...currData,
-                displayedDataList: currData.totalDataList.slice(-lastPostedListings)
-            }))
-            setCurrentPageNumber(Math.ceil(dataLength.length / 9))
-        } else {
-            setDisplayedContent(currData => ({
-                ...currData,
-                displayedDataList: currData.totalDataList.slice(pointA, pointB)
-            }))
-        }
-
+const Pagination = ({ fetchData, page, queryParam }) => {
+    const handleNextPage = () => {
+        queryParam ? fetchData(page + 1, queryParam) : fetchData(page + 1);
         scrollToTop()
-    }
+    };
+
+    const handlePreviousPage = () => {
+        if (page > 0) {
+            queryParam ? fetchData(page - 1, queryParam) : fetchData(page - 1);
+            scrollToTop()
+        }
+    };
 
     return (
-        <section className="pagination pb-4 d-flex align-items-center justify-content-between">
-            <div className="number-of-pages">
-                <p className="mb-0 fw-bold text-muted">
-                    Broj stranice:
-                    <span className="mx-1 text-dark">
-                        {currentPageNumber}
-                    </span>
-                    /
-                    <span className="ms-1 text-dark">
-                        {Math.ceil(dataLength.length / 9)}
-                    </span>
-                </p>
-            </div>
+        < section className="pagination d-flex align-items-center justify-content-between pb-5" >
+            <p className="fw-bold text-muted mb-0 fs-5">
+                Stranica:
+                <span className="text-dark ms-2">
+                    {page + 1}
+                </span>
+            </p>
 
-            <div className="pagination-btn-container text-end">
-                <button className="btn px-3 me-3 btn-prev" onClick={() => paginationOption('minus')}>
+            <div className="pagination-btn-container">
+                <button className="btn px-3 me-3 btn-prev" onClick={handlePreviousPage} disabled={page === 0}>
                     <GrPrevious className="text-white" />
                 </button>
-                <button className="btn px-3 btn-next" onClick={() => paginationOption('plus')}>
+                <button className="btn px-3 btn-next" onClick={handleNextPage} >
                     <GrNext className="text-white" />
                 </button>
             </div>
-        </section>
+        </section >
     )
 }
 

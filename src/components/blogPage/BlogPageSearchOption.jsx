@@ -31,7 +31,7 @@ const BlogPageSearchOption = ({ searchTerm, setSearchTerm, fetchBlogPosts }) => 
 
                     {/* row item 1 */}
                     <div className="col-12 col-md-9 mb-3">
-                        <input type="text" className="form-control" value={searchTerm} placeholder="Unesite naziv Blog Post-a" onChange={e => setSearchTerm(e.target.value)} disabled={disableOption} />
+                        <input type="text" className="form-control" value={searchTerm} placeholder="Unesite naziv Blog post-a" onChange={e => setSearchTerm(e.target.value)} disabled={disableOption} />
                     </div>
 
                     {/* row item 2 */}

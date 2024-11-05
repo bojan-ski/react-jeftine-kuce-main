@@ -103,9 +103,9 @@ export const AppProvider = ({ children }) => {
         handleSubmittedFilterOptions, // PostedListingsFilterOptions, DashboardFilterOptions
         handleReset, // PostedListingsFilterOptions, PostedListingsSearchOption
 
-        blogPosts, 
-        fetchBlogPosts, 
-        curBlogPage
+        blogPosts, // Blog
+        fetchBlogPosts, // Blog
+        curBlogPage // Blog
     }}>
         {children}
     </AppContext.Provider>

@@ -7,6 +7,7 @@ import PageHeader from "../components/PageHeader.jsx";
 import NoDataAvailableMessage from "../components/NoDataAvailableMessage.jsx";
 import BlogPageSearchOption from "../components/blogPage/BlogPageSearchOption.jsx";
 import BlogPostsContainer from "../components/blogPage/BlogPostsContainer.jsx";
+import Pagination from "../components/Pagination.jsx";
 
 
 const Blog = () => {
@@ -27,7 +28,7 @@ const Blog = () => {
 
   return (
     <div className="blog-page">
-      {/* page location */}
+
       <PageLocation />
 
       <PageHeader title="Blog" />
@@ -39,7 +40,11 @@ const Blog = () => {
         {!blogPosts || blogPosts.length == 0 ? (
           <NoDataAvailableMessage text='Blog post-ova' />
         ) : (
-          <BlogPostsContainer blogPosts={blogPosts} />
+          <>
+            <BlogPostsContainer blogPosts={blogPosts} />
+
+            <Pagination fetchData={fetchBlogPosts} page={curBlogPage} queryParam={searchTerm} />
+          </>
         )}
       </div>
     </div>
