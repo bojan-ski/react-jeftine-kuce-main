@@ -5,7 +5,7 @@ import PostNewListingModal from "../../modals/PostNewListingModal"
 const ProfilePageSelectOptions = ({ selectedProfilePageOption, setSelectedProfilePageOption }) => {
     return (
         <>
-            <section className="profile-page-options mb-5">
+            <section className="profile-page-options border-bottom pb-4 mb-5">
                 <div className="row">
 
                     {/* row item 1 */}

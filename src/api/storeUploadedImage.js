@@ -10,30 +10,18 @@ const storeUploadedImage = async (uploadedImage, userName, contactEmailAddress) 
 
         const uploadedImageName = `${uuidv4()}-${uploadedImage.name}`;
 
-        const storageRef = ref(storage, `images/${userName}-${contactEmailAddress}/${uploadedImageName}`);
+        const storageRef = ref(storage, `listingsImages/${userName}-${contactEmailAddress}/${uploadedImageName}`);
 
         const uploadTask = uploadBytesResumable(storageRef, uploadedImage);
 
-        uploadTask.on('state_changed',
-            (snapshot) => {
-                const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-                console.log('Upload is ' + progress + '% done');
-                switch (snapshot.state) {
-                    case 'paused':
-                        console.log('Upload is paused');
-                        break;
-                    case 'running':
-                        console.log('Upload is running');
-                        break;
-                }
-            },
-            (error) => {
-                reject(error)
-            },
+        uploadTask.on(
+            'state_changed',
+            null,
+            reject,
             () => {
-                getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
-                    resolve(downloadURL);
-                });
+                getDownloadURL(uploadTask.snapshot.ref)
+                    .then(resolve)
+                    .catch(reject);
             }
         );
     })

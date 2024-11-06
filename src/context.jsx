@@ -1,7 +1,8 @@
 import { createContext, useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 // firebase/firestore funcs
-import { getAuth, onAuthStateChanged, signOut } from 'firebase/auth'
+import { onAuthStateChanged, signOut } from 'firebase/auth'
+import { auth } from "./firebase.config";
 // custom hook
 import usePostedListings from "./hooks/usePostedListings";
 // toastify
@@ -14,8 +15,6 @@ import useFetchBlogPageData from "./hooks/useFetchBlogPageData";
 const AppContext = createContext()
 
 export const AppProvider = ({ children }) => {
-    const auth = getAuth()
-
     // user details
     const [userData, setUserData] = useState({
         isLoggedIn: false,
@@ -25,7 +24,7 @@ export const AppProvider = ({ children }) => {
     })
 
     useEffect(() => {
-        onAuthStateChanged(auth, (user) => {
+        onAuthStateChanged(auth, (user) => {                        
             if (user) {
                 auth.currentUser ? (
                     setUserData({

@@ -17,13 +17,13 @@ const publishNewListing = async (formData, imageUrls) => {
 
         delete formDataCopy.propertyImages
 
-        await addDoc(collection(db, 'listings'), formDataCopy)
+        await addDoc(collection(db, 'pendingListings'), formDataCopy)
 
         // success message
-        toast.success('Uspešno ste postavili Vaš oglas')
+        toast.success('Uspešno ste poslali Vaš oglas na odobravanje')
 
-        // after the user has posted a new listing, the user is redirected to the Listings page
-        window.location.href = '/oglasi'
+        // redirected user
+        // window.location.href = '/oglasi'
     } catch (error) {
         // error message
         toast.error('Greška prilikom objavljivanja Vašeg oglasa, molimo Vas probajte ponovo')

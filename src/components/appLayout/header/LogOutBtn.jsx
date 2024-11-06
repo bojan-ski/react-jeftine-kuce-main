@@ -21,6 +21,7 @@ const LogOutBtn = () => {
                     isLoggedIn: false,
                     userID: '',
                     userEmail: '',
+                    userVerified: false
                 })
 
                 // success message

@@ -1,4 +1,4 @@
-const FormInput = ({ label, name, type, placeholder, value, defaultValue, required, onMutate, disabled, maxLength, minLength }) => {
+const FormInput = ({ label, name, type, placeholder, value, defaultValue, required, onMutate, disabled, min, max, maxLength, minLength }) => {
     return (
         <div className="mb-3">
             <label htmlFor={name} className="col-form-label fw-bolder mb-1">
@@ -12,11 +12,14 @@ const FormInput = ({ label, name, type, placeholder, value, defaultValue, requir
                 placeholder={placeholder}
                 value={value}
                 defaultValue={defaultValue}
-                required={required}
                 onChange={onMutate}
-                disabled={disabled}
+                min={min}
+                max={max}
                 maxLength={maxLength}
-                minLength={minLength} />
+                minLength={minLength}
+                required={required}
+                disabled={disabled}
+            />
         </div>
     )
 }

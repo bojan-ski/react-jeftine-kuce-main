@@ -5,20 +5,15 @@ import { auth, db } from "../firebase.config";
 import { toast } from "react-toastify"
 
 
-const fetchUserListingsFromFirebase = async () => {
-    
+const fetchUserListingsFromFirebase = async (collectionName) => {
     if (!auth.currentUser) return null
 
     try {
-        const q = query(collection(db, 'listings'),
+        const q = query(collection(db, `${collectionName}`),
             where('userRef', '==', auth.currentUser.uid),
             orderBy('timestamp', 'desc'))
 
-        console.log(q);        
-
         const querySnapshot = await getDocs(q)
-
-        console.log(querySnapshot);        
 
         let allUserPostedListings = []
 
