@@ -90,6 +90,24 @@ textarea {
   transform: scale(0.98);
 }
 
+.select-option-btn,
+.select-option-btn-active {
+  padding: 5px 10px;
+  margin-right: 7px;
+  border-radius: 5px;
+}
+
+.select-option-btn {
+  background-color: #fff;
+  border: 1px solid var(--dark-orange-color);
+}
+
+.select-option-btn-active {
+  background-color: var(--dark-orange-color);
+  border: 1px solid transparent;
+  color: #fff;
+}
+
 /* -------------------- APP (SHARED) COMPONENTS -------------------- */
 /* ---------- HEADER ---------- */
 #header {
@@ -203,25 +221,6 @@ textarea {
   position: absolute;
   left: 60px;
   bottom: 40px;
-}
-
-/* Sing Up, Post New Listing */
-.form-btn,
-.form-btn-active {
-  padding: 5px 10px;
-  margin-right: 7px;
-  border-radius: 5px;
-}
-
-.form-btn {
-  background-color: #fff;
-  border: 1px solid var(--dark-orange-color);
-}
-
-.form-btn-active {
-  background-color: var(--dark-orange-color);
-  border: 1px solid transparent;
-  color: #fff;
 }
 
 /* ---------- MAIN ---------- */

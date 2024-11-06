@@ -6,10 +6,10 @@ const AccountTypeOptions = ({ accountType, setAccountType }) => {
             <label className='form-label fw-bold'>
                 Tip naloga
             </label>
-            <div className='offer-type-btns'>
+            <div>
                 <button
                     type='button'
-                    className={accountType === 'fizičko' ? 'form-btn-active' : 'form-btn'}
+                    className={accountType === 'fizičko' ? 'select-option-btn-active' : 'select-option-btn'}
                     id='accountType'
                     value='fizičko'
                     onClick={() => setAccountType('fizičko')}
@@ -18,7 +18,7 @@ const AccountTypeOptions = ({ accountType, setAccountType }) => {
                 </button>
                 <button
                     type='button'
-                    className={accountType === 'pravno' ? 'form-btn-active' : 'form-btn'}
+                    className={accountType === 'pravno' ? 'select-option-btn-active' : 'select-option-btn'}
                     id='accountType'
                     value='pravno'
                     onClick={() => setAccountType('pravno')}
