@@ -7,11 +7,11 @@ import { db } from "../firebase.config"
 import { toast } from "react-toastify"
 
 
-const deleteUserPostedListing = async (userPostedListingID, selectedListing) => {
+const deleteUserPostedListing = async (userPostedListingID, imageUrls) => {
     if (window.confirm('Are you sure you want to delete?')) {
         try {
             // delete image/images from storage
-            Array.from(selectedListing[0].data.imageUrls).forEach(imageUrl => {
+            Array.from(imageUrls).forEach(imageUrl => {
                 deleteUploadedImageFromDB(imageUrl)
             })
 
@@ -21,8 +21,7 @@ const deleteUserPostedListing = async (userPostedListingID, selectedListing) => 
             return true
         } catch (error) {
             //error message
-            toast.error('Greška prilikom uklanjanja Vašeg oglasa, molimo Vas probajte ponovo')
-            console.log(error);           
+            toast.error('Greška prilikom uklanjanja Vašeg oglasa, molimo Vas probajte ponovo')          
 
             return false
         }

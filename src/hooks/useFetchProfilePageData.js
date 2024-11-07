@@ -5,7 +5,7 @@ import { auth, db } from "../firebase.config";
 // toastify
 import { toast } from "react-toastify";
 
-const useFetchProfilePageData = (itemsPerPage, collectionName) => {
+const useFetchProfilePageData = (itemsPerPage, listingStatus) => {
     const [listings, setListings] = useState([]);
     const [lastVisible, setLastVisible] = useState(null);
     const [page, setPage] = useState(0);
@@ -16,8 +16,9 @@ const useFetchProfilePageData = (itemsPerPage, collectionName) => {
 
         try {
             let queryParameters = [
-                collection(db, `${collectionName}`),
+                collection(db, `listings`),
                 where('userRef', '==', auth.currentUser.uid),
+                where('listingStatus', '==', `${listingStatus}`),
                 orderBy('timestamp', 'desc'),
                 limit(itemsPerPage)
             ]

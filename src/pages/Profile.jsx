@@ -11,8 +11,7 @@ import UserPendingListings from '../components/profilePage/UserPendingListings.j
 
 
 const Profile = () => {
-    const { userData } = useGlobalContext()
-    const [selectedProfilePageOption, setSelectedProfilePageOption] = useState('pending-listings')
+    const { userData, selectedProfilePageOption, setSelectedProfilePageOption } = useGlobalContext()
 
     return (
         <div className="profile-page">
@@ -28,7 +27,7 @@ const Profile = () => {
 
                         {selectedProfilePageOption == 'pending-listings' && <UserPendingListings />}
 
-                        {selectedProfilePageOption == 'listing' && <UserActiveListings />}
+                        {selectedProfilePageOption == 'active-listings' && <UserActiveListings />}
                     </>
                 ) : (
                     <UserNotLoggedIn />

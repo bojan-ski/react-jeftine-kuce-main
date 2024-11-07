@@ -14,7 +14,7 @@ const ProfilePageSelectOptions = ({ selectedProfilePageOption, setSelectedProfil
                             Oglasi na čekanju
                         </button>
 
-                        <button className={`select-option-btn ${selectedProfilePageOption == 'listing' && 'select-option-btn-active'}`} onClick={() => setSelectedProfilePageOption('listing')}>
+                        <button className={`select-option-btn ${selectedProfilePageOption == 'active-listings' && 'select-option-btn-active'}`} onClick={() => setSelectedProfilePageOption('active-listings')}>
                             Aktivni oglasi
                         </button>
 

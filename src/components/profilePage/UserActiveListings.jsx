@@ -1,43 +1,42 @@
 import React, { useEffect } from 'react'
-// custom hook
-import useFetchProfilePageData from '../../hooks/useFetchProfilePageData';
+// context
+import { useGlobalContext } from '../../context';
 // components
 import AllPostedListingsGridView from '../AllPostedListingsGridView';
 import Pagination from '../Pagination';
 
 
 const UserActiveListings = () => {
-    const itemsPerPage = 6;
-    const { listings: userActiveListings, fetchListings, page } = useFetchProfilePageData(itemsPerPage, 'listings');   
+    const { userActiveListings, fetchUserActiveListings, curActiveListingsPage } = useGlobalContext();
 
     // Fetch the first page on mount
     useEffect(() => {
         console.log('useEffect - UserActiveListings');
 
-        if(userActiveListings.length== 0){
+        if (userActiveListings.length == 0) {
             console.log('get active listings data');
-            fetchListings();
+            fetchUserActiveListings();
         }
     }, [])
 
     return (
-       <>
-        {!userActiveListings || userActiveListings.length == 0 ? (
-                <section className="user-pending-listings mb-5">
+        <>
+            {!userActiveListings || userActiveListings.length == 0 ? (
+                <section className="user-active-listings mb-5">
                     <h2 className="fw-bold text-center">
                         Trenutno nemate postavljenih oglasa
                     </h2>
                 </section>
             ) : (
                 <>
-                    <section className="user-pending-listings mb-3">
+                    <section className="user-active-listings mb-3">
                         <AllPostedListingsGridView displayedListingsList={userActiveListings} />
                     </section>
 
-                    <Pagination fetchData={fetchListings} page={page} />
+                    <Pagination fetchData={fetchUserActiveListings} page={curActiveListingsPage} />
                 </>
             )}
-       </>
+        </>
     )
 }
 

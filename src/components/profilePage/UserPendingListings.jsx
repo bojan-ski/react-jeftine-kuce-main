@@ -1,22 +1,21 @@
 import React, { useEffect } from 'react'
-// custom hook
-import useFetchProfilePageData from '../../hooks/useFetchProfilePageData';
+// context
+import { useGlobalContext } from '../../context';
 // components
 import AllPostedListingsGridView from '../AllPostedListingsGridView';
 import Pagination from '../Pagination';
 
 
 const UserPendingListings = () => {
-    const itemsPerPage = 6;
-    const { listings: userPendingListings, fetchListings, page } = useFetchProfilePageData(itemsPerPage, 'pendingListings');   
+    const { userPendingListings, fetchUserPendingListings, curPendingListingsPage } = useGlobalContext();
 
     // Fetch the first page on mount
     useEffect(() => {
         console.log('useEffect - UserPendingListings');
 
-        if(userPendingListings.length== 0){
+        if (userPendingListings.length == 0) {
             console.log('get pending listings data');
-            fetchListings();
+            fetchUserPendingListings();
         }
     }, [])
 
@@ -34,7 +33,7 @@ const UserPendingListings = () => {
                         <AllPostedListingsGridView displayedListingsList={userPendingListings} />
                     </section>
 
-                    <Pagination fetchData={fetchListings} page={page} />
+                    <Pagination fetchData={fetchUserPendingListings} page={curPendingListingsPage} />
                 </>
             )}
         </>

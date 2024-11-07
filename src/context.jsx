@@ -8,6 +8,7 @@ import { auth } from "./firebase.config";
 // custom hook
 import usePostedListings from "./hooks/usePostedListings";
 import useFetchBlogPageData from "./hooks/useFetchBlogPageData";
+import useFetchProfilePageData from "./hooks/useFetchProfilePageData";
 
 
 const AppContext = createContext()
@@ -86,12 +87,21 @@ export const AppProvider = ({ children }) => {
         fetchListings()
     }
 
+    // PROFILE PAGE
+    const [selectedProfilePageOption, setSelectedProfilePageOption] = useState('pending-listings')
+
+    const itemsPendingListings = 6;
+    const { listings: userPendingListings, fetchListings: fetchUserPendingListings, page: curPendingListingsPage } = useFetchProfilePageData(itemsPendingListings, 'pending'); 
+
+    const itemsActiveListings = 6;
+    const { listings: userActiveListings, fetchListings: fetchUserActiveListings, page: curActiveListingsPage } = useFetchProfilePageData(itemsActiveListings, 'active');  
+
     // BLOG PAGE   
     const itemsPerBlogPage = 12;
     const { blogPosts, fetchBlogPosts, curBlogPage } = useFetchBlogPageData(itemsPerBlogPage)
 
     return <AppContext.Provider value={{
-        userData, //Profile, HeaderTop, Profile, PostNewListingModal, FormRowDataTwo
+        userData, //Profile, HeaderTop, Profile, PostNewListingModal, FormRowDataTwo, PostedListingGridViewCard
         setUserData, // LogOutBtn
 
         listings, // PostedListings, PostedListingsPagination
@@ -107,6 +117,19 @@ export const AppProvider = ({ children }) => {
         handleSubmittedFilterOptions, // PostedListingsFilterOptions, DashboardFilterOptions
         handleReset, // PostedListingsFilterOptions, PostedListingsSearchOption
 
+        //PROFILE PAGE
+        selectedProfilePageOption, // Profile, DeleteListing
+        setSelectedProfilePageOption, // Profile
+
+        userPendingListings, // UserPendingListings
+        fetchUserPendingListings, // UserPendingListings, DeleteListing
+        curPendingListingsPage, // UserPendingListings
+
+        userActiveListings, // UserActiveListings
+        fetchUserActiveListings, // UserActiveListings, DeleteListing
+        curActiveListingsPage, // UserActiveListings
+
+        //BLOG PAGE
         blogPosts, // Blog
         fetchBlogPosts, // Blog
         curBlogPage // Blog

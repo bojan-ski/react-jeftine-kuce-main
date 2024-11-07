@@ -17,7 +17,7 @@ const publishNewListing = async (formData, imageUrls) => {
 
         delete formDataCopy.propertyImages
 
-        await addDoc(collection(db, 'pendingListings'), formDataCopy)
+        await addDoc(collection(db, 'listings'), formDataCopy)
 
         // success message
         toast.success('Uspešno ste poslali Vaš oglas na odobravanje')

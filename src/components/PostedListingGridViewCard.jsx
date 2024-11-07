@@ -1,4 +1,6 @@
 import { Link } from "react-router-dom"
+// context
+import { useGlobalContext } from "../context.jsx";
 // utils func
 import priceComma from "../utils/priceComma.js";
 import scrollToTop from "../utils/scrollToTop.js";
@@ -9,10 +11,16 @@ import { PiBathtubLight } from 'react-icons/pi'
 // Swiper
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation, Pagination } from 'swiper/modules';
+// components
+import DeleteListing from "./profilePage/DeleteListing.jsx";
 
 
 const PostedListingGridViewCard = ({ postedListing }) => {
-    const { listingType, propertyType, propertyName, numRooms, numBathrooms, lotNumber, squareFootage, propertyLocation, propertyDistrict, imageUrls, askingPrice, listingCreated } = postedListing.data
+    const { userData } = useGlobalContext()
+
+    const { userRef, listingType, propertyType, propertyName, numRooms, numBathrooms, lotNumber, squareFootage, propertyLocation, propertyDistrict, imageUrls, askingPrice, listingCreated } = postedListing.data
+
+    const pathname = window.location.pathname
 
     return (
         <div className="grid-card col-12 col-lg-4 p-1 text-center text-lg-start">
@@ -100,9 +108,17 @@ const PostedListingGridViewCard = ({ postedListing }) => {
                     <Link to={`/oglasi/${postedListing.id}`} className="btn bg-orange-hover text-white fw-bold px-4" onClick={() => scrollToTop()}>
                         Detailji
                     </Link>
-                    <p className="fw-bold mb-0">
-                        {listingCreated.split('-')[1]}
-                    </p>
+
+                    {(pathname == '/nalog' && userData.userID == userRef) ? (
+                        <>
+                            <DeleteListing userPostedListingID={postedListing.id} imageUrls={imageUrls} />
+                        </>
+                    ) : (
+                        <p className="fw-bold mb-0">
+                            {listingCreated.split('-')[1]}
+                        </p>
+                    )}
+
                 </div>
             </div>
         </div>
