@@ -3,7 +3,7 @@ import React from 'react'
 
 const SelectedBlogPostContent = ({ selectedBlogPost }) => {
     return (
-        <section className='selected-blog-post-content rounded-4 bg-white p-4'>
+        <section className='selected-blog-post-content rounded-4 bg-white p-4 mt-5'>
             <div className="d-flex align-center justify-content-between mb-3">
                 <h2 className='fw-bold'>
                     {selectedBlogPost.newBlogPostTitle}

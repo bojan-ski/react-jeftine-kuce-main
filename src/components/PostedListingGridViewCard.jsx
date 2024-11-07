@@ -105,7 +105,7 @@ const PostedListingGridViewCard = ({ postedListing }) => {
                 </div>
 
                 <div className="d-flex align-items-center justify-content-between">
-                    <Link to={`/oglasi/${postedListing.id}`} className="btn bg-orange-hover text-white fw-bold px-4" onClick={() => scrollToTop()}>
+                    <Link to={`${pathname}/${postedListing.id}`} className="btn bg-orange-hover text-white fw-bold px-4" onClick={() => scrollToTop()}>
                         Detailji
                     </Link>
 

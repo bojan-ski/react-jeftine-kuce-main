@@ -12,7 +12,7 @@ const fetchUserDataFromFirebase = async () => {
         return docSnap.data()       
     } catch (error) {
         // error message
-        toast.error('Greška prilikom prikazivanja izabranog post-a, molimo Vas probajte ponovo')
+        toast.error('Greška prilikom registracije naloga, molimo Vas probajte ponovo')
     }
 }
 

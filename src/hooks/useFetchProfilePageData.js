@@ -10,7 +10,6 @@ const useFetchProfilePageData = (itemsPerPage, listingStatus) => {
     const [lastVisible, setLastVisible] = useState(null);
     const [page, setPage] = useState(0);
 
-
     const fetchListings = async (pageNumber = 0, reset = false) => {
         if (!auth.currentUser) return null
 
@@ -62,8 +61,6 @@ const useFetchProfilePageData = (itemsPerPage, listingStatus) => {
         } catch (error) {
             //error message
             toast.error('Greška prilikom prikazivanja Vaših oglasa, molimo Vas probajte ponovo')
-
-            console.log(error);
         }
     };
 

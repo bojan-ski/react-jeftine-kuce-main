@@ -15,7 +15,8 @@ const usePostedListings = (itemsPerPage) => {
         try {            
             let constraints = [
                 orderBy('timestamp', 'desc'),
-                limit(itemsPerPage)
+                limit(itemsPerPage),
+                where('listingStatus', '==', 'active')
             ]
 
             if (typeof condition == 'string' && condition.length > 0) {

@@ -1,18 +1,18 @@
 import { useState } from "react";
-import { useLoaderData, Link } from "react-router-dom"
+import { useLoaderData } from "react-router-dom"
 // api funcs
 import fetchSelectedListingDetailsFromFirebase from '../api/fetchSelectedListingDetailsFromFirebase.js'
 // utils funcs
 import priceComma from "../utils/priceComma.js";
 // component
+import BackButton from "../components/BackButton.jsx";
+import ListingDetailsItemOne from "../components/selectedListingPage/ListingDetailsItemOne.jsx";
+import ListingDetailsItemTwo from "../components/selectedListingPage/ListingDetailsItemTwo.jsx";
+import ListingDetailsItemThree from "../components/selectedListingPage/ListingDetailsItemThree.jsx";
+import ListingDetailsItemFour from "../components/selectedListingPage/ListingDetailsItemFour.jsx";
 import ImagesGallery from "../components/selectedListingPage/ImagesGallery.jsx";
 // modal
 import SelectedImageModal from "../modals/SelectedImageModal.jsx";
-// React Icons
-import { LiaTapeSolid } from 'react-icons/lia'
-import { MdConfirmationNumber, MdOutlineBedroomChild } from 'react-icons/md'
-import { PiBathtubLight } from 'react-icons/pi'
-import { CiCalendarDate } from "react-icons/ci";
 
 
 // REACT QUERY
@@ -32,8 +32,6 @@ export const loader = (queryClient) => async ({ params }) => {
 
 const SelectedListing = () => {
     const selectedListingDetails = useLoaderData()
-    console.log(selectedListingDetails);
-    
 
     const { listingType, propertyType, propertyName, numRooms, numBathrooms, lotNumber, squareFootage, propertyAddress, propertyLocation, propertyDistrict, imageUrls, askingPrice, listingDescription, listingCreated, contactFullName, contactPhoneNumber, contactEmailAddress } = selectedListingDetails
 
@@ -43,13 +41,12 @@ const SelectedListing = () => {
 
     return (
         <>
-            <div className="selected-posted-offer-page my-5">
+            <div className="selected-listing-page my-5">
                 <div className="container px-5 rounded-4 border bg-white">
 
                     <section className="d-flex align-items-center justify-content-between my-5">
-                        <Link to={urlBackPath ? '/oglasi' : '/nalog'} className="btn bg-orange-hover text-white fw-bold px-4">
-                            Nazad
-                        </Link>
+                        <BackButton backPath={urlBackPath ? '/oglasi' : '/nalog'} />
+
                         <h2 className="text-orange fw-bold">
                             {listingType === 'izdajem' ? "IZDAJE SE" : 'NA PRODAJU'}
                         </h2>
@@ -63,85 +60,31 @@ const SelectedListing = () => {
                             {propertyName}
                         </h3>
                         <h4 className="text-orange fw-bold">
-                            {/* {priceComma(askingPrice)} EUR {listingType === 'izdajem' ? 'mesečno' : ''} */}
+                            {priceComma(askingPrice)} EUR {listingType === 'izdajem' ? 'mesečno' : ''}
                         </h4>
                     </section>
 
-                    <section className="posted-offer-details">
+                    <section>
                         <div className="row">
 
                             {/* row item 1 */}
                             <div className="col-12 col-lg-6 mb-4">
-                                <p className='mb-0 fw-bold text-muted'>
-                                    Adresa:<span className='ms-1 text-dark capitalize'>{propertyAddress}</span>
-                                </p>
-                                <p className='mb-0 fw-bold text-muted'>
-                                    Mesto:<span className='ms-1 text-dark capitalize'>{propertyLocation}</span>
-                                </p>
-                                <p className='mb-0 fw-bold text-muted'>
-                                    Okrug:<span className='ms-1 text-dark capitalize'>{propertyDistrict}</span>
-                                </p>
+                                <ListingDetailsItemOne selectedListingDetails={selectedListingDetails} />
                             </div>
 
                             {/* row item 2 */}
                             <div className="col-12 col-lg-6 mb-4">
-                                {propertyType === 'plac' ? (
-                                    <>
-                                        <p className="mb-0 fw-bold text-muted d-flex align-items-center" >
-                                            <MdConfirmationNumber className='me-2' />
-                                            Broj parcele:<span className="ms-1 fw-bold text-dark">
-                                                {lotNumber}
-                                            </span>
-                                        </p>
-                                    </>
-                                ) : (
-                                    <>
-                                        <p className="mb-0 fw-bold text-muted d-flex align-items-center" >
-                                            <MdOutlineBedroomChild className='me-2' />
-                                            Sobe:<span className="ms-1 fw-bold text-dark">{numRooms}</span>
-                                        </p>
-                                        <p className="mb-0 fw-bold text-muted d-flex align-items-center">
-                                            <PiBathtubLight className='me-2' />
-                                            Kupatila:<span className="ms-1 fw-bold text-dark">{numBathrooms}</span>
-                                        </p>
-                                    </>
-                                )}
-                                <p className="mb-0 fw-bold text-muted d-flex align-items-center">
-                                    <LiaTapeSolid className='me-2' />
-                                    Prostor:
-                                    <span className="ms-1 fw-bold text-dark"> {squareFootage}</span>
-                                    <span className="ms-1 fw-bold text-dark">{propertyType == 'plac' ? 'ari' : 'kvadrata'}</span>
-                                </p>
-                                <p className="mb-0 fw-bold text-muted d-flex align-items-center">
-                                    <CiCalendarDate className='me-2' />
-                                    Oglas objavljen:<span className="ms-1 fw-bold text-dark"> {listingCreated}</span>
-                                </p>
+                                <ListingDetailsItemTwo selectedListingDetails={selectedListingDetails} />
                             </div>
 
                             {/* row item 3 */}
                             <div className="col-12 pb-4 mb-4 border-bottom">
-                                <h5 className="mb-3">
-                                    Opis:
-                                </h5>
-                                <p className='mb-0 fw-bold text-break'>
-                                    {listingDescription}
-                                </p>
+                                <ListingDetailsItemThree selectedListingDetails={selectedListingDetails} />
                             </div>
 
                             {/* row item 4 */}
                             <div className="col-12 pb-4 mb-4 border-bottom">
-                                <h4 className="mb-3">
-                                    Kontakt informacije:
-                                </h4>
-                                <p className='mb-0 fw-bold text-muted'>
-                                    Ime vlasnika:<span className='ms-1 text-dark'>{contactFullName}</span>
-                                </p>
-                                <p className='mb-0 fw-bold text-muted'>
-                                    Email:<span className='ms-1 text-dark'>{contactEmailAddress}</span>
-                                </p>
-                                <p className='mb-0 fw-bold text-muted'>
-                                    Telefon:<span className='ms-1 text-dark'>+381 {contactPhoneNumber}</span>
-                                </p>
+                                <ListingDetailsItemFour selectedListingDetails={selectedListingDetails} />
                             </div>
 
                             {/* row item 5 */}
@@ -151,7 +94,7 @@ const SelectedListing = () => {
                                 </h6>
 
                                 {/* ImgsGallery - component */}
-                                {/* <ImagesGallery imageUrls={imageUrls} setImageSrc={setImageSrc} /> */}
+                                <ImagesGallery imageUrls={imageUrls} setImageSrc={setImageSrc} />
 
                                 {/* SelectedImageModal - modal */}
                                 <SelectedImageModal imageSrc={imageSrc} />

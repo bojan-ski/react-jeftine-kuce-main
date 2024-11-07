@@ -1,4 +1,3 @@
-import { useState } from 'react'
 // context
 import { useGlobalContext } from "../context.jsx"
 // components

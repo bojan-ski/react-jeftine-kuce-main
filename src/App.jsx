@@ -39,8 +39,7 @@ const router = createBrowserRouter([
       {
         path: '/oglasi/:id',
         element: <SelectedListing />,
-        loader: selectedListingLoader
-        // loader: selectedListingLoader(queryClient)
+        loader: selectedListingLoader(queryClient)
       },
       {
         path: '/agencije',
@@ -53,8 +52,7 @@ const router = createBrowserRouter([
       {
         path: '/nalog/:id',
         element: <SelectedListing />,
-        loader: selectedListingLoader
-        // loader: selectedListingLoader(queryClient)
+        loader: selectedListingLoader(queryClient)
       },
       {
         path: '/blog',
