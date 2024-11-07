@@ -1,11 +1,11 @@
 import React from 'react'
-import { useLoaderData } from 'react-router-dom'
+// context
+import { useGlobalContext } from '../../../context'
 // components
 import FormInput from '../../FormInput'
 
-
-const FormRowDataTwo = ({ formData, handleAddFormData }) => {
-    const { userProfileData } = useLoaderData()
+const FormRowDataTwo = ({ formData, handleAddFormData }) => {   
+    const { userData } = useGlobalContext()
     const { listingType, propertyType, propertyName, lotNumber, numRooms, numBathrooms, squareFootage, propertyAddress, propertyLocation, propertyDistrict, propertyImages, askingPrice, listingDescription, contactFullName, contactPhoneNumber, contactEmailAddress } = formData
 
     return (
@@ -61,17 +61,17 @@ const FormRowDataTwo = ({ formData, handleAddFormData }) => {
 
                 {/* owner full name */}
                 <FormInput
-                    label={userProfileData.accountType == 'pravno' ? 'Naziv vaše agencije' : 'Vaše ime i prezime'}
+                    label={userData?.userAccountType == 'pravno' ? 'Naziv vaše agencije' : 'Vaše ime i prezime'}
                     // label='Vaše ime i prezime'
                     type='text'
                     name='contactFullName'
                     // value={contactFullName}
-                    value={userProfileData.accountType == 'pravno' ? userProfileData.username : contactFullName}
+                    value={userData?.userAccountType == 'pravno' ? userData?.userName : contactFullName}
                     onMutate={handleAddFormData}
                     maxLength={25}
                     placeholder="Petar Petrović"
                     required={true}
-                    disabled={userProfileData.accountType == 'pravno' ? true : false}
+                    disabled={userData?.userAccountType == 'pravno' ? true : false}
                 />
 
                 {/* contact phone */}

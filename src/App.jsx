@@ -17,9 +17,7 @@ import ErrorPage from "./pages/ErrorPage.jsx"
 
 // LOADERS
 import { loader as selectedListingLoader } from "./pages/SelectedListing.jsx"
-import { loader as userPostedListingsLoader } from "./pages/Profile.jsx"
 import { loader as selectedBlogPostLoader } from "./pages/SelectedBlogPost.jsx"
-
 
 
 const queryClient = new QueryClient()
@@ -51,7 +49,6 @@ const router = createBrowserRouter([
       {
         path: '/nalog',
         element: <Profile />,
-        loader: userPostedListingsLoader
       },
       {
         path: '/nalog/:id',

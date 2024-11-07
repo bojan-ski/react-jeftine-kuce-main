@@ -12,6 +12,8 @@ const PaginationCustom = ({ dataLength, setDisplayedContent }) => {
     const [currentPageNumber, setCurrentPageNumber] = useState(1)
 
     useEffect(()=>{
+        console.log('useEffect - PaginationCustom');
+        
         pointA = 0
         pointB = 9
     },[])
@@ -63,7 +65,7 @@ const PaginationCustom = ({ dataLength, setDisplayedContent }) => {
     }
 
     return (
-        <section className="pagination pb-4 d-flex align-items-center justify-content-between">
+        <section className="pagination d-flex align-items-center justify-content-between mt-3">
             <div className="number-of-pages">
                 <p className="mb-0 fw-bold text-muted">
                     Broj stranice:

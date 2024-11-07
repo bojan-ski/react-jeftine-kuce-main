@@ -1,14 +1,12 @@
 import { createContext, useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+// api
+import fetchUserDataFromFirebase from "./api/fetchUserDataFromFirebase";
 // firebase/firestore funcs
-import { onAuthStateChanged, signOut } from 'firebase/auth'
+import { onAuthStateChanged } from 'firebase/auth'
 import { auth } from "./firebase.config";
 // custom hook
 import usePostedListings from "./hooks/usePostedListings";
-// toastify
-import { toast } from 'react-toastify'
-
-
 import useFetchBlogPageData from "./hooks/useFetchBlogPageData";
 
 
@@ -20,17 +18,23 @@ export const AppProvider = ({ children }) => {
         isLoggedIn: false,
         userID: '',
         userName: '',
+        userAccountType: '',
         userVerified: false
     })
 
     useEffect(() => {
-        onAuthStateChanged(auth, (user) => {                        
-            if (user) {
+        console.log('useEffect - context');        
+
+         onAuthStateChanged(auth, async (user) => {                        
+            if (user) {                
+                let userProfileData = await fetchUserDataFromFirebase()
+
                 auth.currentUser ? (
                     setUserData({
                         isLoggedIn: true,
                         userID: user.uid,
                         userName: user.displayName,
+                        userAccountType: userProfileData.accountType,
                         userVerified: user.emailVerified
                     })
                 ) : (
@@ -38,6 +42,7 @@ export const AppProvider = ({ children }) => {
                         isLoggedIn: false,
                         userID: '',
                         userName: '',
+                        userAccountType: '',
                         userVerified: false
                     })
                 )
@@ -86,7 +91,7 @@ export const AppProvider = ({ children }) => {
     const { blogPosts, fetchBlogPosts, curBlogPage } = useFetchBlogPageData(itemsPerBlogPage)
 
     return <AppContext.Provider value={{
-        userData, //Profile, NavbarUserOnboarding, UserLoggedIn, PostNewListingModal
+        userData, //Profile, HeaderTop, Profile, PostNewListingModal, FormRowDataTwo
         setUserData, // LogOutBtn
 
         listings, // PostedListings, PostedListingsPagination

@@ -1,10 +1,9 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useLoaderData, Link } from "react-router-dom"
 // api funcs
 import fetchSelectedListingDetailsFromFirebase from '../api/fetchSelectedListingDetailsFromFirebase.js'
 // utils funcs
 import priceComma from "../utils/priceComma.js";
-import scrollToTop from "../utils/scrollToTop.js";
 // component
 import ImagesGallery from "../components/selectedListingPage/ImagesGallery.jsx";
 // modal
@@ -33,10 +32,8 @@ export const loader = (queryClient) => async ({ params }) => {
 
 const SelectedListing = () => {
     const selectedListingDetails = useLoaderData()
-
-    useEffect(() => {
-        scrollToTop()
-    }, [])
+    console.log(selectedListingDetails);
+    
 
     const { listingType, propertyType, propertyName, numRooms, numBathrooms, lotNumber, squareFootage, propertyAddress, propertyLocation, propertyDistrict, imageUrls, askingPrice, listingDescription, listingCreated, contactFullName, contactPhoneNumber, contactEmailAddress } = selectedListingDetails
 
@@ -66,7 +63,7 @@ const SelectedListing = () => {
                             {propertyName}
                         </h3>
                         <h4 className="text-orange fw-bold">
-                            {priceComma(askingPrice)} EUR {listingType === 'izdajem' ? 'mesečno' : ''}
+                            {/* {priceComma(askingPrice)} EUR {listingType === 'izdajem' ? 'mesečno' : ''} */}
                         </h4>
                     </section>
 
@@ -154,7 +151,7 @@ const SelectedListing = () => {
                                 </h6>
 
                                 {/* ImgsGallery - component */}
-                                <ImagesGallery imageUrls={imageUrls} setImageSrc={setImageSrc} />
+                                {/* <ImagesGallery imageUrls={imageUrls} setImageSrc={setImageSrc} /> */}
 
                                 {/* SelectedImageModal - modal */}
                                 <SelectedImageModal imageSrc={imageSrc} />

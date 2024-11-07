@@ -1,28 +1,43 @@
-import React from 'react'
-import { useLoaderData } from 'react-router-dom';
+import React, { useEffect } from 'react'
+// custom hook
+import useFetchProfilePageData from '../../hooks/useFetchProfilePageData';
+// components
+import AllPostedListingsGridView from '../AllPostedListingsGridView';
+import Pagination from '../Pagination';
 
 
 const UserActiveListings = () => {
-    const { userActivePostedListings } = useLoaderData()
-    console.log(userActivePostedListings);
+    const itemsPerPage = 6;
+    const { listings: userActiveListings, fetchListings, page } = useFetchProfilePageData(itemsPerPage, 'listings');   
+
+    // Fetch the first page on mount
+    useEffect(() => {
+        console.log('useEffect - UserActiveListings');
+
+        if(userActiveListings.length== 0){
+            console.log('get active listings data');
+            fetchListings();
+        }
+    }, [])
 
     return (
-        <section className="user-active-listings mb-5">
-            {!userActivePostedListings || userActivePostedListings.length == 0 ? (
-                <h2 className="fw-bold text-center">
-                    Trenutno nemate postavljenih oglasa
-                </h2>
+       <>
+        {!userActiveListings || userActiveListings.length == 0 ? (
+                <section className="user-pending-listings mb-5">
+                    <h2 className="fw-bold text-center">
+                        Trenutno nemate postavljenih oglasa
+                    </h2>
+                </section>
             ) : (
                 <>
-                    <h2 className="fw-bold text-center mb-5">
-                        AKTIVNI
-                    </h2>
+                    <section className="user-pending-listings mb-3">
+                        <AllPostedListingsGridView displayedListingsList={userActiveListings} />
+                    </section>
 
-                    {/* AllPostedListingsGridView component */}
-                    {/* <AllPostedListingsGridView displayedListingsList={displayedListingsList.displayedDataList} deleteUserPostedListing={deleteUserPostedListing} /> */}
+                    <Pagination fetchData={fetchListings} page={page} />
                 </>
             )}
-        </section>
+       </>
     )
 }
 

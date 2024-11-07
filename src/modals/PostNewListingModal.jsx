@@ -12,13 +12,14 @@ import FormRowDataTwo from "../components/modals/postNewListing/FormRowDataTwo.j
 import { toast } from "react-toastify";
 
 
-const PostNewListingModal = () => {
-    const { userData } = useGlobalContext()   
-    const { userID, userName, userVerified } = userData
+const PostNewListingModal = () => {   
+    const { userData } = useGlobalContext()    
+    const { userID, userName, userAccountType, userVerified } = userData
     const [isLoading, setIsLoading] = useState(false);
     const [formData, setFormData] = useState({
         userRef: userID,
-        listingCreatedBy: userName,
+        userUsername: userName,
+        userAccountType: userAccountType,
         listingStatus: 'pending',
         listingType: 'prodajem',
         propertyType: 'kuca',

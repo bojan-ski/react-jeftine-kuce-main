@@ -20,7 +20,7 @@ const Blog = () => {
     console.log('Blog page - useEffect');
 
     if (blogPosts.length == 0 && searchTerm == '') {
-      console.log('get data');
+      console.log('get blog data');
 
       fetchBlogPosts();
     }

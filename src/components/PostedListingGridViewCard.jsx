@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom"
 // utils func
 import priceComma from "../utils/priceComma.js";
+import scrollToTop from "../utils/scrollToTop.js";
 // React Icons
 import { LiaTapeSolid } from 'react-icons/lia'
 import { MdConfirmationNumber, MdOutlineBedroomChild } from 'react-icons/md'
@@ -10,7 +11,7 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation, Pagination } from 'swiper/modules';
 
 
-const PostedListingGridViewCard = ({ postedListing, deleteUserPostedListing }) => {
+const PostedListingGridViewCard = ({ postedListing }) => {
     const { listingType, propertyType, propertyName, numRooms, numBathrooms, lotNumber, squareFootage, propertyLocation, propertyDistrict, imageUrls, askingPrice, listingCreated } = postedListing.data
 
     return (
@@ -30,7 +31,7 @@ const PostedListingGridViewCard = ({ postedListing, deleteUserPostedListing }) =
                             dynamicBullets: true,
                         }}
                     >
-                        {imageUrls.slice(0,3)?.map((image, idx) => {
+                        {imageUrls.slice(0, 3)?.map((image, idx) => {
                             return (
                                 <SwiperSlide key={idx} className="text-center grid-card-details-image">
                                     <img src={image} alt="slike-imovine" className="rounded-4" />
@@ -50,7 +51,7 @@ const PostedListingGridViewCard = ({ postedListing, deleteUserPostedListing }) =
                     </h6>
                 </div>
 
-                <div className={listingType === 'izdajem' ? 'grid-card-details-info row border-bottom pb-3 mb-3' : 'grid-card-details-info row border-bottom pb-4 mb-4 pb-lg-3 mb-lg-3' }>
+                <div className={listingType === 'izdajem' ? 'grid-card-details-info row border-bottom pb-3 mb-3' : 'grid-card-details-info row border-bottom pb-4 mb-4 pb-lg-3 mb-lg-3'}>
                     <div className="col-12">
                         <h6 className="text-muted">
                             Mesto:<span className="ms-1 text-dark capitalize">{propertyLocation}</span>
@@ -96,25 +97,12 @@ const PostedListingGridViewCard = ({ postedListing, deleteUserPostedListing }) =
                 </div>
 
                 <div className="d-flex align-items-center justify-content-between">
-                    {deleteUserPostedListing ? (
-                        <>
-                            <Link to={`/nalog/${postedListing.id}`} className="btn bg-orange-hover text-white fw-bold px-4">
-                                Detailji
-                            </Link>
-                            <button type="button" className="btn btn-danger fw-bold" onClick={() => deleteUserPostedListing(postedListing.id)}>
-                                Obriši oglas
-                            </button>
-                        </>
-                    ) : (
-                        <>
-                            <Link to={`/oglasi/${postedListing.id}`} className="btn bg-orange-hover text-white fw-bold px-4">
-                                Detailji
-                            </Link>
-                            <p className="fw-bold mb-0">
-                                {listingCreated.split('-')[1]}
-                            </p>
-                        </>
-                    )}
+                    <Link to={`/oglasi/${postedListing.id}`} className="btn bg-orange-hover text-white fw-bold px-4" onClick={() => scrollToTop()}>
+                        Detailji
+                    </Link>
+                    <p className="fw-bold mb-0">
+                        {listingCreated.split('-')[1]}
+                    </p>
                 </div>
             </div>
         </div>

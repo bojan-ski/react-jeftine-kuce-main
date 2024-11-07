@@ -4,9 +4,9 @@ import { auth, db } from "../firebase.config";
 import { toast } from 'react-toastify';
 
 
-const fetchUserDataFromFirebase = async () => {
+const fetchUserDataFromFirebase = async () => {   
     try {
-        const docRef = doc(db, "users", auth.currentUser.uid);
+        const docRef = doc(db, "users", auth.currentUser?.uid);
         const docSnap = await getDoc(docRef);
 
         return docSnap.data()       
