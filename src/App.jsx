@@ -46,6 +46,11 @@ const router = createBrowserRouter([
         element: <Agencies />,
       },
       {
+        path: '/agencije/:id',
+        element: <SelectedListing />,
+        loader: selectedListingLoader(queryClient)
+      },
+      {
         path: '/nalog',
         element: <Profile />,
       },

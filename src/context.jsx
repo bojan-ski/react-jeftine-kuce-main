@@ -6,7 +6,7 @@ import fetchUserDataFromFirebase from "./api/fetchUserDataFromFirebase";
 import { onAuthStateChanged } from 'firebase/auth'
 import { auth } from "./firebase.config";
 // custom hook
-import usePostedListings from "./hooks/usePostedListings";
+import useFetchAllActiveListings from "./hooks/useFetchAllActiveListings";
 import useFetchBlogPageData from "./hooks/useFetchBlogPageData";
 import useFetchProfilePageData from "./hooks/useFetchProfilePageData";
 
@@ -14,7 +14,7 @@ import useFetchProfilePageData from "./hooks/useFetchProfilePageData";
 const AppContext = createContext()
 
 export const AppProvider = ({ children }) => {
-    // user details
+    // USER PROFILE DETAILS (DATA)
     const [userData, setUserData] = useState({
         isLoggedIn: false,
         userID: '',
@@ -51,9 +51,9 @@ export const AppProvider = ({ children }) => {
         })
     }, [])
 
-    // display listings
+    // POSTED LISTINGS PAGE
     const itemsPerListingsPage = 9;
-    const { listings, fetchListings, page } = usePostedListings(itemsPerListingsPage);
+    const { listings, fetchListings, page } = useFetchAllActiveListings(itemsPerListingsPage);
 
     // filter option
     const navigate = useNavigate()
@@ -104,6 +104,7 @@ export const AppProvider = ({ children }) => {
         userData, //Profile, HeaderTop, Profile, PostNewListingModal, FormRowDataTwo, PostedListingGridViewCard
         setUserData, // LogOutBtn
 
+        // POSTED LISTINGS PAGE
         listings, // PostedListings, PostedListingsPagination
         fetchListings, // PostedListings, PostedListingsSearchOption, PostedListingsPagination
         page, // PostedListingsPagination

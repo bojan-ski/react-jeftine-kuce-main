@@ -37,7 +37,7 @@ const FormRowDataOne = ({ formData, handleAddFormData }) => {
                     Tip nekretnine
                 </label>
                 <div className="property-type-btns">
-                    {["kuca", "stan", "vikendica", "lokal", "plac"].map(type => (
+                    {["kuća", "stan", "vikendica", "lokal", "plac"].map(type => (
                         <button
                             type="button"
                             className={formData.propertyType === type ? "select-option-btn-active mb-1" : "select-option-btn mb-1"}

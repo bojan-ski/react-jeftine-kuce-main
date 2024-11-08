@@ -22,7 +22,7 @@ const PostNewListingModal = () => {
         userAccountType: userAccountType,
         listingStatus: 'pending',
         listingType: 'prodajem',
-        propertyType: 'kuca',
+        propertyType: 'kuća',
         propertyName: '',
         lotNumber: '',
         numRooms: '',
