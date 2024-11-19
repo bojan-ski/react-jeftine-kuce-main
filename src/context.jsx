@@ -7,6 +7,7 @@ import { onAuthStateChanged } from 'firebase/auth'
 import { auth } from "./firebase.config";
 // custom hook
 import useFetchAllActiveListings from "./hooks/useFetchAllActiveListings";
+import useFetchSelectedAgencyListings from "./hooks/useFetchSelectedAgencyListings";
 import useFetchBlogPageData from "./hooks/useFetchBlogPageData";
 import useFetchProfilePageData from "./hooks/useFetchProfilePageData";
 
@@ -14,7 +15,7 @@ import useFetchProfilePageData from "./hooks/useFetchProfilePageData";
 const AppContext = createContext()
 
 export const AppProvider = ({ children }) => {
-    // USER PROFILE DETAILS (DATA)
+    // USER PROFILE DETAILS
     const [userData, setUserData] = useState({
         isLoggedIn: false,
         userID: '',
@@ -24,10 +25,10 @@ export const AppProvider = ({ children }) => {
     })
 
     useEffect(() => {
-        console.log('useEffect - context');        
+        console.log('useEffect - context');
 
-         onAuthStateChanged(auth, async (user) => {                        
-            if (user) {                
+        onAuthStateChanged(auth, async (user) => {
+            if (user) {
                 let userProfileData = await fetchUserDataFromFirebase()
 
                 auth.currentUser ? (
@@ -87,14 +88,20 @@ export const AppProvider = ({ children }) => {
         fetchListings()
     }
 
+    // AGENCIES PAGE
+    const [selectedAgencyData, setSelectedAgencyData] = useState({})
+
+    const itemsSelectedAgencyPage = 2;
+    const { listings: allSelectedAgencyListings, fetchListings: fetchAllSelectedAgencyListings, page: curSelectedAgencyPage, isLoading: isAllSelectedAgencyListingsLoading } = useFetchSelectedAgencyListings(itemsSelectedAgencyPage);    
+
     // PROFILE PAGE
     const [selectedProfilePageOption, setSelectedProfilePageOption] = useState('pending-listings')
 
     const itemsPendingListings = 6;
-    const { listings: userPendingListings, fetchListings: fetchUserPendingListings, page: curPendingListingsPage } = useFetchProfilePageData(itemsPendingListings, 'pending'); 
+    const { listings: userPendingListings, fetchListings: fetchUserPendingListings, page: curPendingListingsPage } = useFetchProfilePageData(itemsPendingListings, 'pending');
 
     const itemsActiveListings = 6;
-    const { listings: userActiveListings, fetchListings: fetchUserActiveListings, page: curActiveListingsPage } = useFetchProfilePageData(itemsActiveListings, 'active');  
+    const { listings: userActiveListings, fetchListings: fetchUserActiveListings, page: curActiveListingsPage } = useFetchProfilePageData(itemsActiveListings, 'active');
 
     // BLOG PAGE   
     const itemsPerBlogPage = 12;
@@ -117,6 +124,14 @@ export const AppProvider = ({ children }) => {
         handleSelectedFilterOption, // FilterOptions
         handleSubmittedFilterOptions, // PostedListingsFilterOptions, DashboardFilterOptions
         handleReset, // PostedListingsFilterOptions, PostedListingsSearchOption
+
+        // AGENCIES PAGE
+        selectedAgencyData, // AgenciesContainer, SelectAgencyOptions, SelectedAgencyProfileData, SelectedAgencyListings
+        setSelectedAgencyData, // AgenciesContainer, SelectAgencyOptions
+        allSelectedAgencyListings, // AgenciesContainer, SelectedAgencyListings
+        fetchAllSelectedAgencyListings, // AgenciesContainer, SelectAgencyOptions, SelectedAgencyListings
+        curSelectedAgencyPage, // SelectedAgencyListings
+        isAllSelectedAgencyListingsLoading, // SelectedAgencyListings
 
         //PROFILE PAGE
         selectedProfilePageOption, // Profile, DeleteListing

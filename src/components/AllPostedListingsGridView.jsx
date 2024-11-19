@@ -2,7 +2,7 @@
 import PostedListingGridViewCard from "./PostedListingGridViewCard.jsx"
 
 
-const AllPostedListingsGridView = ({ displayedListingsList }) => {
+const AllPostedListingsGridView = ({ displayedListingsList }) => {   
     return (
         <div className='row'>
             {(displayedListingsList !== null && displayedListingsList.length > 0) && (

@@ -18,7 +18,6 @@ export const loader = async () => {
 
 const Agencies = () => {
     const allAgencies = useLoaderData()
-    console.log(allAgencies);
 
     return (
         <div className='agencies-page'>
