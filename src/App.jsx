@@ -16,6 +16,7 @@ import Contact from "./pages/Contact.jsx"
 import ErrorPage from "./pages/ErrorPage.jsx"
 
 // LOADERS
+import { loader as allAgenciesLoader } from "./pages/Agencies.jsx"
 import { loader as selectedListingLoader } from "./pages/SelectedListing.jsx"
 import { loader as selectedBlogPostLoader } from "./pages/SelectedBlogPost.jsx"
 
@@ -44,6 +45,7 @@ const router = createBrowserRouter([
       {
         path: '/agencije',
         element: <Agencies />,
+        loader: allAgenciesLoader
       },
       {
         path: '/agencije/:id',

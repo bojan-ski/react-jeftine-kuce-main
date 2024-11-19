@@ -34,7 +34,7 @@ const PostNewListingModal = () => {
         propertyImages: [],
         askingPrice: '',
         listingDescription: '',
-        contactFullName: '',
+        contactFullName: userAccountType == 'pravno' ? userName : '',
         contactPhoneNumber: '',
         contactEmailAddress: '',
     })
@@ -51,11 +51,11 @@ const PostNewListingModal = () => {
 
     const validateImages = (images) => {
         if (images.length > 7) {
-            toast.warning('Ograničenje je 7 slika, molimo Vas pobajte ponovo!');
+            toast.warning('Ograničenje je 7 slika!');
             return false;
         }
         if (!Array.from(images).every(img => img.size <= 1000000)) {
-            toast.warning('Ograničenje za otpremanje slike je do 1MB, molimo Vas pobajte ponovo!');
+            toast.warning('Ograničenje za otpremanje slike je do 1MB.');
             return false;
         }
         return true;
