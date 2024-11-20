@@ -1,8 +1,10 @@
 const PageHeader = ({ title }) => {
     return (
-        <h1 className='capitalize fw-bold text-center mb-5'>
-            {title}
-        </h1>
+        <div className="text-center mb-5">
+            <h1 className='capitalize fw-bold'>
+                {title}
+            </h1>
+        </div>
     )
 }
 

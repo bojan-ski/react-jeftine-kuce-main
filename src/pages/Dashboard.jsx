@@ -1,7 +1,9 @@
+import React from 'react'
 // components
 import Hero from "../components/dashboardPage/Hero.jsx"
 import ExpertAdvices from "../components/dashboardPage/ExpertAdvices.jsx"
 import Testimonials from "../components/dashboardPage/Testimonials.jsx"
+
 
 const Dashboard = () => {
   return (

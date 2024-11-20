@@ -1,3 +1,5 @@
+import React from 'react'
+// leaflet
 import 'leaflet/dist/leaflet.css'
 import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet'
 
@@ -9,7 +11,7 @@ const ContactMap = () => {
         <TileLayer
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         />
-
+        
         <Marker position={[44.62036774911955, 21.18423890709805]}>
           <Popup>
             Tabačka Čaršija

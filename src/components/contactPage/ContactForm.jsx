@@ -1,3 +1,4 @@
+import React from 'react'
 // axios
 import axios from "axios"
 //data
@@ -24,18 +25,20 @@ const ContactForm = () => {
             template_id: `${import.meta.env.VITE_EMAILJS_TEMPLATE_ID}`,
             user_id: `${import.meta.env.VITE_EMAILJS_API_KEY}`,
             template_params: emailContent
-        };        
+        };
 
         try {
             const response = await axios.post(`${import.meta.env.VITE_EMAILJS_URL}`, data)
 
-            // success message
-            toast.success('Vaša poruka je poslata');
+            if (response) {
+                // success message
+                toast.success('Vaša poruka je poslata');
 
-            e.target.elements[0].value = '';
-            e.target.elements[1].value = '';
-            e.target.elements[2].value = 'Odaberite';
-            e.target.elements[3].value = '';
+                e.target.elements[0].value = '';
+                e.target.elements[1].value = '';
+                e.target.elements[2].value = 'Odaberite';
+                e.target.elements[3].value = '';
+            }
         } catch (error) {
             // error message
             toast.error('Došlo je do greške prilikom slanja vaše poruke, molimo Vas probajte ponovo')

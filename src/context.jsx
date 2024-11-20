@@ -1,3 +1,4 @@
+import React from 'react'
 import { createContext, useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 // api
@@ -104,8 +105,8 @@ export const AppProvider = ({ children }) => {
     const { listings: userActiveListings, fetchListings: fetchUserActiveListings, page: curActiveListingsPage } = useFetchProfilePageData(itemsActiveListings, 'active');
 
     // BLOG PAGE   
-    const itemsPerBlogPage = 12;
-    const { blogPosts, fetchBlogPosts, curBlogPage } = useFetchBlogPageData(itemsPerBlogPage)
+    const itemsPerBlogPage = 3;
+    const { blogPosts, fetchBlogPosts, curBlogPage, isLoading: isBlogsPageLoading } = useFetchBlogPageData(itemsPerBlogPage)
 
     return <AppContext.Provider value={{
         userData, //Profile, HeaderTop, Profile, PostNewListingModal, FormRowDataTwo, PostedListingGridViewCard
@@ -148,7 +149,8 @@ export const AppProvider = ({ children }) => {
         //BLOG PAGE
         blogPosts, // Blog
         fetchBlogPosts, // Blog
-        curBlogPage // Blog
+        curBlogPage, // Blog
+        isBlogsPageLoading, // Blog
     }}>
         {children}
     </AppContext.Provider>

@@ -1,3 +1,4 @@
+import React from 'react'
 // asset
 import contactImg from '../../assets/contact-assets/jeftine_kuce_contact_person.png'
 // react icons

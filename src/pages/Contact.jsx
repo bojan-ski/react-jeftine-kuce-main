@@ -1,8 +1,10 @@
+import React from 'react'
 // components
 import PageLocation from '../components/PageLocation.jsx';
 import ContactDetails from '../components/contactPage/ContactDetails.jsx'
 import ContactMap from '../components/contactPage/ContactMap.jsx'
 import ContactForm from '../components/contactPage/ContactForm.jsx'
+
 
 const Contact = () => {
   return (

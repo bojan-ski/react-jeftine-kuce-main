@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from 'react'
 // context
 import { useGlobalContext } from "../context.jsx";
 // components
@@ -11,7 +11,7 @@ import Pagination from "../components/Pagination.jsx";
 
 
 const Blog = () => {
-  const { blogPosts, fetchBlogPosts, curBlogPage } = useGlobalContext()
+  const { blogPosts, fetchBlogPosts, curBlogPage, isBlogsPageLoading } = useGlobalContext()
   // search feature - state
   const [searchTerm, setSearchTerm] = useState('')
 
@@ -27,7 +27,7 @@ const Blog = () => {
   }, [])
 
   return (
-    <div className="blog-page">
+    <div className="blog-page pb-5">
 
       <PageLocation />
 
@@ -38,12 +38,12 @@ const Blog = () => {
         <BlogPageSearchOption searchTerm={searchTerm} setSearchTerm={setSearchTerm} fetchBlogPosts={fetchBlogPosts} />
 
         {!blogPosts || blogPosts.length == 0 ? (
-          <NoDataAvailableMessage text='Blog post-ova' />
+          <NoDataAvailableMessage text='objavljenih Blog post-ova' />
         ) : (
           <>
             <BlogPostsContainer blogPosts={blogPosts} />
 
-            <Pagination fetchData={fetchBlogPosts} page={curBlogPage} queryParam={searchTerm} />
+            <Pagination fetchData={fetchBlogPosts} page={curBlogPage} queryParam={searchTerm} isLoading={isBlogsPageLoading} />
           </>
         )}
       </div>
