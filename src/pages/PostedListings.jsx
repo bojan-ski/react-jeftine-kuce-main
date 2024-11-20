@@ -1,27 +1,30 @@
-import React from 'react'
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from 'react'
 // context
 import { useGlobalContext } from "../context.jsx";
 // components
 import PageLocation from "../components/PageLocation.jsx"
+import PageHeader from '../components/PageHeader.jsx';
 import NoDataAvailableMessage from "../components/NoDataAvailableMessage.jsx";
 import PostedListingsOptions from "../components/postedListingsPage/PostedListingsOptions.jsx";
-import PostedListingsFilterOptions from "../components/postedListingsPage/PostedListingsFilterOptions.jsx";
-import PostedListingsSearchOption from "../components/postedListingsPage/PostedListingsSearchOption.jsx";
+import PostedListingsConditionOption from '../components/postedListingsPage/PostedListingsConditionOption.jsx';
 import PostedListingsContainer from "../components/postedListingsPage/PostedListingsContainer.jsx";
-import PostedListingsPagination from "../components/postedListingsPage/PostedListingsPagination.jsx";
+import Pagination from '../components/Pagination.jsx';
 
 
 const PostedListings = () => {
-  const { fetchListings, listings, condition } = useGlobalContext()
+  const { listings, fetchListings, curListingsPage, isListingsPageLoading, condition } = useGlobalContext()
 
-  const [layout, setLayout] = useState('grid')
   const [conditionOption, setConditionOption] = useState('search')
+  const [layout, setLayout] = useState('grid')
 
   // Fetch the first page on mount
   useEffect(() => {
-    if (condition == undefined) fetchListings();
-  }, [condition]);
+    console.log('useEffect - PostedListings');
+
+    if (listings.length == 0){
+      fetchListings();
+    }
+  }, []);
 
   return (
     <div className="posted-listings-page">
@@ -29,49 +32,27 @@ const PostedListings = () => {
       {/* page location */}
       <PageLocation />
 
-      <div className="container">
-        <section className="text-center mb-5">
-          <h1 className="fw-bold mb-3">
-            Oglasi
-          </h1>
-        </section>
+      <PageHeader title='Oglasi' />
 
-        {/* options - layout - search or filter */}
+      <div className="container">
+
+        {/* options - layout & search or filter */}
         <PostedListingsOptions layout={layout} setLayout={setLayout} conditionOption={conditionOption} setConditionOption={setConditionOption} />
 
-        {/* search & filter */}
-        <section>
-          <div className="row">
+        {/* search & filter features*/}
+        <PostedListingsConditionOption conditionOption={conditionOption}/>
 
-            {conditionOption == 'search' ? (
-              <>
-                {/* row item 1 - FILTER component */}
-                < div className="col-12 mb-3">
-                  <PostedListingsFilterOptions />
-                </div>
-              </>
-            ) : (
-              <>
-                {/* row item 2 - SEARCH component */}
-                <div className="col-12 mb-3">
-                  <PostedListingsSearchOption />
-                </div>
-              </>
-            )}
-          </div>
-        </section >
+        <section className='listings-list mb-5'>
+          {!listings || listings.length == 0 ? (
+            <NoDataAvailableMessage text='objavljenih oglasa' />
+          ) : (
+            <>
+              <PostedListingsContainer layout={layout} listings={listings} />
 
-        {!listings || listings.length == 0 ? (
-          <NoDataAvailableMessage text='oglasa' />
-        ) : (
-          <>
-            {/* posted listings - list */}
-            <PostedListingsContainer layout={layout} listings={listings} />
-
-            {/* pagination - posted listings */}
-            <PostedListingsPagination />
-          </>
-        )}
+              <Pagination fetchData={fetchListings} page={curListingsPage} queryParam={condition} isLoading={isListingsPageLoading} />
+            </>
+          )}
+        </section>
       </div>
     </div>
   )

@@ -7,12 +7,11 @@ import { toast } from "react-toastify";
 
 
 const useFetchSelectedAgencyListings = (itemsPerPage) => {
+    const [currentAgencyID, setCurrentAgencyID] = useState(null);
     const [listings, setListings] = useState([]);
     const [pageSnapshots, setPageSnapshots] = useState([]);
     const [page, setPage] = useState(0);
     const [isLoading, setIsLoading] = useState(false);
-
-    const [currentAgencyID, setCurrentAgencyID] = useState(null);
 
     const fetchListings = useCallback(async (pageNumber = 0, agencyID, reset = false) => {
         console.log('fetchListings - useFetchSelectedAgencyListings');
@@ -53,7 +52,7 @@ const useFetchSelectedAgencyListings = (itemsPerPage) => {
                 );
 
                 updatedSnapshots = [];
-                // setPageSnapshots([]);
+                setPageSnapshots(updatedSnapshots);
             } else if (pageNumber > page) {
                 // Moving forward, use the last snapshot of the current page              
                 // let lastVisible = pageSnapshots[pageSnapshots.length - 1];

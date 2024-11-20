@@ -1,3 +1,4 @@
+import React from 'react'
 // components
 import AllPostedListingsGridView from "../AllPostedListingsGridView"
 import AllPostedListingsListView from "../AllPostedListingsListView"
@@ -5,7 +6,7 @@ import AllPostedListingsListView from "../AllPostedListingsListView"
 
 const PostedListingsContainer = ({ layout, listings }) => {
     return (
-        < section >
+        < section className="mb-3">
             {layout === 'grid' ? (
                 <AllPostedListingsGridView displayedListingsList={listings} />
             ) : (

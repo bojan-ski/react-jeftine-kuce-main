@@ -54,8 +54,8 @@ export const AppProvider = ({ children }) => {
     }, [])
 
     // POSTED LISTINGS PAGE
-    const itemsPerListingsPage = 9;
-    const { listings, fetchListings, page } = useFetchAllActiveListings(itemsPerListingsPage);
+    const itemsPerListingsPage = 3;
+    const { listings, fetchListings, page: curListingsPage, isLoading: isListingsPageLoading } = useFetchAllActiveListings(itemsPerListingsPage);
 
     // filter option
     const navigate = useNavigate()
@@ -115,7 +115,8 @@ export const AppProvider = ({ children }) => {
         // POSTED LISTINGS PAGE
         listings, // PostedListings, PostedListingsPagination
         fetchListings, // PostedListings, PostedListingsSearchOption, PostedListingsPagination
-        page, // PostedListingsPagination
+        curListingsPage, // PostedListingsPagination
+        isListingsPageLoading, // PostedListings
 
         condition, // PostedListings, FilterOptions, PostedListingsSearchOption
         setCondition, // PostedListingsSearchOption, DashboardFilterOptions

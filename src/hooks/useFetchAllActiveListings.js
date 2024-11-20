@@ -8,12 +8,20 @@ import { toast } from "react-toastify";
 
 const useFetchAllActiveListings = (itemsPerPage) => {
     const [listings, setListings] = useState([]);
-    const [lastVisible, setLastVisible] = useState(null);
+    const [pageSnapshots, setPageSnapshots] = useState([]);
     const [page, setPage] = useState(0);
+    const [isLoading, setIsLoading] = useState(false);
 
     const fetchListings = useCallback(async (pageNumber = 0, userQueryParameter = '', reset = false) => {
+        console.log('fetchListings');
+
+        setIsLoading(true);
+
+        let updatedSnapshots = pageSnapshots;
+
         try {
             let queryParameters = [
+                collection(db, 'listings'),
                 orderBy('timestamp', 'desc'),
                 limit(itemsPerPage),
                 where('listingStatus', '==', 'active')
@@ -40,23 +48,21 @@ const useFetchAllActiveListings = (itemsPerPage) => {
             if (reset || pageNumber === 0) {
                 // Fetch the first page or reset to the first page
                 q = query(
-                    collection(db, 'listings'),
                     ...queryParameters,
                 );
 
-                // Reset the last visible document when looping back
-                setLastVisible(null);
-            } else {
-                // Fetch the next set based on the last visible document
-                if (lastVisible) {
-                    q = query(
-                        collection(db, 'listings'),
-                        ...queryParameters,
-                        startAfter(lastVisible),
-                    );
-                } else {
-                    return
-                }
+                updatedSnapshots = [];
+                setPageSnapshots(updatedSnapshots);
+            } else if (pageNumber > page) {
+                // Moving forward, use the last snapshot of the current page              
+                let lastVisible = updatedSnapshots[updatedSnapshots.length - 1];
+
+                q = query(...queryParameters, startAfter(lastVisible));
+            } else if (pageNumber < page) {
+                // Moving back, use the snapshot of the previous page
+                let previousPageSnapshot = updatedSnapshots[pageNumber - 1];
+
+                q = query(...queryParameters, startAfter(previousPageSnapshot));
             }
 
             const querySnapshot = await getDocs(q);
@@ -64,13 +70,19 @@ const useFetchAllActiveListings = (itemsPerPage) => {
             // Check if the end of the collection is reached
             if (querySnapshot.docs.length == 0 && pageNumber !== 0) {
                 // Loop back to the first page
+                updatedSnapshots = [];
+                setPageSnapshots(updatedSnapshots);
+
                 fetchListings(0, userQueryParameter, true);
                 return;
             }
 
             // Update the last visible document for the next page
             const newLastVisible = querySnapshot.docs[querySnapshot.docs.length - 1];
-            setLastVisible(newLastVisible);
+            updatedSnapshots = reset
+                ? [newLastVisible]
+                : [...updatedSnapshots, newLastVisible];
+            setPageSnapshots(updatedSnapshots);
 
             // Replace the listings with the new set of documents for the current page
             setListings(querySnapshot.docs.map(doc => ({ id: doc.id, data: doc.data() })));
@@ -78,13 +90,17 @@ const useFetchAllActiveListings = (itemsPerPage) => {
         } catch (error) {
             //error message
             toast.error('Greška prilikom prikazivanja svi objavljenih oglasa, molimo Vas probajte ponovo')
-            
-            console.log(error);
-            
-        }
-    }, [itemsPerPage, lastVisible])
 
-    return { listings, fetchListings, page };
+            console.log(error);
+
+        }
+        setIsLoading(false)
+
+        // console.log(pageSnapshots);        
+
+    }, [page, itemsPerPage, pageSnapshots])
+
+    return { listings, fetchListings, page, isLoading };
 }
 
 export default useFetchAllActiveListings

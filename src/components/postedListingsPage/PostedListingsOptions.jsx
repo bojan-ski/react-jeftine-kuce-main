@@ -1,3 +1,4 @@
+import React from 'react'
 // react icons
 import { BsGrid3X3Gap } from "react-icons/bs";
 import { FaFilter, FaListUl, FaSearch } from "react-icons/fa";

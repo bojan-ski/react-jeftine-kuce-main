@@ -1,3 +1,4 @@
+import React from 'react'
 // context
 import { useGlobalContext } from "../../context";
 
@@ -12,7 +13,7 @@ const PostedListingsSearchOption = () => {
 
         setDisableOption(true)
 
-        fetchListings(0, condition.trim().toLowerCase())
+        fetchListings(0, condition.trim())
     }
 
     return (
