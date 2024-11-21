@@ -1,3 +1,6 @@
+import React from 'react'
+
+
 const NoDataAvailableMessage = ({ text }) => {
     return (
         <div className="text-center py-5">

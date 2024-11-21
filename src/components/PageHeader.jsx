@@ -1,3 +1,6 @@
+import React from 'react'
+
+
 const PageHeader = ({ title }) => {
     return (
         <div className="text-center mb-5">

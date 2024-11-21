@@ -1,17 +1,17 @@
-import { useState } from 'react'
+import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 // api
 import userResetPassword from '../api/userResetPassword.js'
 // utils func
 import closeModalOnSubmit from '../utils/closeModalOnSubmit.js'
-// app assets
-import forgotPasswordModalImg from '../assets/header-assets/forgot_password.jpg'
-import appNameImg from '../assets/header-assets/jeftine_kuce_logo_text_whit_small.png'
 // components
 import ModalHeader from '../components/modals/ModalHeader.jsx'
 import ModalFooter from '../components/modals/ModalFooter.jsx'
 import FormSubmitBtn from '../components/FormSubmitBtn.jsx'
 import FormInput from '../components/FormInput.jsx'
+// app assets
+import forgotPasswordModalImg from '../assets/header-assets/forgot_password.jpg'
+import appNameImg from '../assets/header-assets/jeftine_kuce_logo_text_whit_small.png'
 // toastify
 import { toast } from 'react-toastify'
 
@@ -29,7 +29,7 @@ const ForgotPassword = () => {
 
         if (response) {
             // success message
-            toast.success('Proverite vaš email radi promere šifre');
+            toast.success('Proverite Vašu elektronsku poštu radi promene lozinke');
 
             // reset form data
             e.target.elements[0].value = ''

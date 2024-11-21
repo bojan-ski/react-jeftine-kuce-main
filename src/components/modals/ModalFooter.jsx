@@ -1,5 +1,6 @@
 import React from 'react'
 
+
 const ModalFooter = ({ text, label, target }) => {
     return (
         <div className="modal-footer border-0 justify-content-center">

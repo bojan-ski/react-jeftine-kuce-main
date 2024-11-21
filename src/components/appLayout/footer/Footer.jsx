@@ -1,3 +1,4 @@
+import React from 'react'
 // components
 import MainFooterContent from "./MainFooterContent.jsx"
 import NavAndSocialFooterLinks from "./NavAndSocialFooterLinks.jsx"

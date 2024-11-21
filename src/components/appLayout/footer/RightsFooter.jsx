@@ -1,3 +1,4 @@
+import React from 'react'
 import { Link } from "react-router-dom"
 // utils func 
 import scrollToTop from "../../../utils/scrollToTop.js"
@@ -18,6 +19,7 @@ const RightsFooter = () => {
           <Link to='https://msdagencija.rs/' target="_blank" className="text-orange-hover mx-1">
             msd
           </Link>
+          {/* & BPdevelopment */}
         </p>
       </div>
     </div>

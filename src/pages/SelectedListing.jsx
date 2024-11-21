@@ -38,7 +38,7 @@ const SelectedListing = () => {
 
     const [imageSrc, setImageSrc] = useState('')
 
-    const urlBackPath = window.location.pathname.split('/').includes('oglasi')
+    const urlBackPath = window.location.pathname.split('/')[1]  
 
     return (
         <>
@@ -46,7 +46,7 @@ const SelectedListing = () => {
                 <div className="container px-5 rounded-4 border bg-white">
 
                     <section className="d-flex align-items-center justify-content-between my-5">
-                        <BackButton backPath={urlBackPath ? '/oglasi' : '/nalog'} />
+                        <BackButton backPath={`/${urlBackPath}`} />
 
                         <h2 className="text-orange fw-bold">
                             {listingType === 'izdajem' ? "IZDAJE SE" : 'NA PRODAJU'}

@@ -11,8 +11,6 @@ const UserPendingListings = () => {
 
     // Fetch the first page on mount
     useEffect(() => {
-        console.log('useEffect - UserPendingListings');
-
         if (userPendingListings.length == 0) fetchUserPendingListings();
     }, [])
 

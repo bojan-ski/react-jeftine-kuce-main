@@ -1,3 +1,4 @@
+import React from 'react'
 import { Link } from "react-router-dom"
 // utils func
 import scrollToTop from "../../utils/scrollToTop"

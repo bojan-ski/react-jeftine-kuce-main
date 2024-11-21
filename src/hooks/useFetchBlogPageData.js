@@ -13,8 +13,6 @@ const useFetchBlogPageData = (itemsPerPage) => {
     const [isLoading, setIsLoading] = useState(false);
 
     const fetchBlogPosts = useCallback(async (pageNumber = 0, searchTerm = '', reset = false) => {
-        console.log('fetchBlogPosts');
-
         setIsLoading(true);
         
         try {
@@ -72,7 +70,6 @@ const useFetchBlogPageData = (itemsPerPage) => {
         } catch (error) {
             //error message
             toast.error('Greška prilikom prikazivanja svi Blog post-ova, molimo Vas probajte ponovo')
-            console.log(error);
         }
 
         setIsLoading(false);

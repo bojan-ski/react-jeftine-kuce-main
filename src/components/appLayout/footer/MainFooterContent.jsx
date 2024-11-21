@@ -1,3 +1,4 @@
+import React, { useState } from 'react'
 import { Link } from "react-router-dom"
 // api func 
 import subscribeToNewsletter from "../../../api/subscribeToNewsletter.js"
@@ -11,12 +12,23 @@ import footerIcon2 from '../../../assets/footer-assets/jeftine_kuce_footer_2.png
 
 
 const MainFooterContent = () => {
+    const [isLoading, setIsLoading] = useState(false)
+
     const handleNewsletterEmailSubmit = async (e) => {
         e.preventDefault()
 
-        await subscribeToNewsletter(e.target.elements[0].value)
+        setIsLoading(true)
 
-        e.target.elements[0].value = ""
+        const response = await subscribeToNewsletter(e.target.elements[0].value)
+
+        if (response) {
+            e.target.elements[0].value = ""
+
+            // success message
+            toast.success('Uspešno ste prosledili Vašu email adresu')
+        }
+
+        setIsLoading(false)
     }
 
     return (
@@ -169,7 +181,7 @@ const MainFooterContent = () => {
                             </p>
                             <form onSubmit={handleNewsletterEmailSubmit}>
                                 <input type="email" className="form-control py-3 mb-2" name="email" id="email" placeholder="Vaša adresa elektronske pošte" required />
-                                <button type="submit" className="footer-form-btn btn text-white fw-bolder w-100 mb-2">
+                                <button type="submit" className="footer-form-btn btn text-white fw-bolder w-100 mb-2" disabled={isLoading}>
                                     Prijavite se
                                 </button>
                                 <div className="mb-3 form-check">

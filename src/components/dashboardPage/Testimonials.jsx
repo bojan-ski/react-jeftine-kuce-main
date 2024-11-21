@@ -1,3 +1,4 @@
+import React from 'react'
 // data
 import testimonials from '../../data/testimonials.js';
 // Swiper

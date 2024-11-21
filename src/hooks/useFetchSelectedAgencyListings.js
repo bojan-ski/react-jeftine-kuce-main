@@ -14,12 +14,7 @@ const useFetchSelectedAgencyListings = (itemsPerPage) => {
     const [isLoading, setIsLoading] = useState(false);
 
     const fetchListings = useCallback(async (pageNumber = 0, agencyID, reset = false) => {
-        console.log('fetchListings - useFetchSelectedAgencyListings');
-
         setIsLoading(true);
-
-        // console.log(agencyID);
-        // console.log(currentAgencyID);
 
         // Local copy of snapshots to handle reset
         let updatedSnapshots = pageSnapshots;
@@ -80,19 +75,11 @@ const useFetchSelectedAgencyListings = (itemsPerPage) => {
             }
 
             // Update the last visible document for the next page
-            const newLastVisible = querySnapshot.docs[querySnapshot.docs.length - 1];
-            // setPageSnapshots([...pageSnapshots, newLastVisible]);            
+            const newLastVisible = querySnapshot.docs[querySnapshot.docs.length - 1];            
             updatedSnapshots = reset
                 ? [newLastVisible]
                 : [...updatedSnapshots, newLastVisible];
             setPageSnapshots(updatedSnapshots);
-
-            // if (querySnapshot.docs.length > 0) {
-            //     const newLastVisible = querySnapshot.docs[querySnapshot.docs.length - 1];
-            //     setPageSnapshots((prevSnapshots) =>
-            //         reset ? [newLastVisible] : [...prevSnapshots, newLastVisible]
-            //     );
-            // }
 
             // Replace the listings with the new set of documents for the current page
             setListings(querySnapshot.docs.map(doc => ({ id: doc.id, data: doc.data() })));
@@ -100,14 +87,8 @@ const useFetchSelectedAgencyListings = (itemsPerPage) => {
         } catch (error) {
             //error message
             toast.error('Greška prilikom prikazivanja svi objavljenih oglasa izabrane agencije')
-
-            console.log(error);
         }
-
-        // console.log(listings);
-        console.log(pageSnapshots);
-        // console.log(page);        
-
+   
         setIsLoading(false);
     }, [page, itemsPerPage, pageSnapshots, currentAgencyID])
 

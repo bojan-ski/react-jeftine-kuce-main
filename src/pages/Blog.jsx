@@ -17,13 +17,7 @@ const Blog = () => {
 
   // Fetch the first page on mount
   useEffect(() => {
-    console.log('Blog page - useEffect');
-
-    if (blogPosts.length == 0 && searchTerm == '') {
-      console.log('get blog data');
-
-      fetchBlogPosts();
-    }
+    if (blogPosts.length == 0 && searchTerm == '') fetchBlogPosts();
   }, [])
 
   return (

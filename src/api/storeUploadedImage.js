@@ -3,6 +3,7 @@ import { getStorage, ref, uploadBytesResumable, getDownloadURL } from "firebase/
 // uuid
 import { v4 as uuidv4 } from 'uuid';
 
+
 // store images in firebase
 const storeUploadedImage = async (uploadedImage, userName, contactEmailAddress) => {
     return new Promise((resolve, reject) => {

@@ -4,6 +4,7 @@ import { db } from "../firebase.config";
 // toastify
 import { toast } from "react-toastify";
 
+
 const subscribeToNewsletter = async (userEmail) => {
     try {
         const newsletterSubscriber = {
@@ -13,11 +14,12 @@ const subscribeToNewsletter = async (userEmail) => {
 
         await addDoc(collection(db, 'newsletterSubscribers'), newsletterSubscriber)
 
-        // success message
-        toast.success('Uspešno ste prosledili Vašu email adresu')
+        return true
     } catch (error) {
         // error message
         toast.error('Greška prilikom prosleđivanja Vaše email adrese, molimo Vas probajte ponovo')
+
+        return false
     }
 }
 

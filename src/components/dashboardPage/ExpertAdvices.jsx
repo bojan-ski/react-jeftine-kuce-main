@@ -1,3 +1,4 @@
+import React from 'react'
 // component
 import ExpertAdviceCard from "./ExpertAdviceCard.jsx"
 // assets
@@ -25,7 +26,6 @@ const ExpertAdvices = () => {
 
           {/* row item 3 */}
           <ExpertAdviceCard cardImg={houseImgThree} cardMonth="Jun" />
-
         </div>
       </div>
     </section>

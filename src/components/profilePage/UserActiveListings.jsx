@@ -11,8 +11,6 @@ const UserActiveListings = () => {
 
     // Fetch the first page on mount
     useEffect(() => {
-        console.log('useEffect - UserActiveListings');
-
         if (userActiveListings.length == 0) fetchUserActiveListings();
     }, [])
 

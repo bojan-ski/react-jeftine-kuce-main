@@ -2,6 +2,7 @@
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { EffectFade, Navigation, Pagination } from 'swiper/modules';
 
+
 const ImagesGallery = ({ imageUrls, setImageSrc }) => {
     return (
         <>

@@ -1,5 +1,6 @@
 import React from 'react'
 
+
 const AccountTypeOptions = ({ accountType, setAccountType }) => {
     return (
         <div className="mb-3">

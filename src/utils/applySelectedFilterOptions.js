@@ -1,6 +1,6 @@
-const applySelectedFilterOptions = (selectedFilterOptions, allPostedListingsData) => {
+const applySelectedFilterOptions = (selectedFilterOptions, allPostedListingsData) => {    
     const { selectedListingType, selectedPropertyType, selectedDistrict } = selectedFilterOptions
-    let filteredListOfPostedListings = allPostedListingsData
+    let filteredListOfPostedListings = allPostedListingsData   
 
     if (selectedListingType !== 'Svi oglasi') {
         const filterResult = filteredListOfPostedListings.filter(listing => {

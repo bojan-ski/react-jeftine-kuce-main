@@ -13,7 +13,6 @@ const useFetchProfilePageData = (itemsPerPage, listingStatus) => {
     const [isLoading, setIsLoading] = useState(false);
 
     const fetchListings = useCallback(async (pageNumber = 0, reset = false) => {
-        console.log('fetchListings - profile');
         if (!auth.currentUser) return null
 
         setIsLoading(true);
@@ -76,11 +75,9 @@ const useFetchProfilePageData = (itemsPerPage, listingStatus) => {
         } catch (error) {
             //error message
             toast.error('Greška prilikom prikazivanja Vaših oglasa, molimo Vas probajte ponovo')
-            console.log(error);
         }
+        
         setIsLoading(false)
-
-        // console.log(pageSnapshots);
     }, [page, itemsPerPage, pageSnapshots])
 
     return { listings, fetchListings, page, isLoading };

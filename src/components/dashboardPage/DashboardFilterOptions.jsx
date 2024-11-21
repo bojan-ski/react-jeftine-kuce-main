@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import React, { useEffect } from 'react';
 // context
 import { useGlobalContext } from '../../context.jsx';
 // component

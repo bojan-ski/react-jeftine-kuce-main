@@ -1,3 +1,4 @@
+import React from 'react'
 import { Link } from 'react-router-dom'
 //utils func 
 import priceComma from '../utils/priceComma.js'
@@ -5,6 +6,7 @@ import priceComma from '../utils/priceComma.js'
 import { LiaTapeSolid } from 'react-icons/lia'
 import { MdConfirmationNumber, MdOutlineBedroomChild } from 'react-icons/md'
 import { PiBathtubLight } from 'react-icons/pi'
+
 
 const PostedListingListViewCard = (postedListing) => {
     const { listingType, propertyType, numRooms, numBathrooms, lotNumber, squareFootage, propertyLocation, imageUrls, askingPrice } = postedListing.data

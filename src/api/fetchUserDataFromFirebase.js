@@ -1,3 +1,4 @@
+// firebase/firestore funcs
 import { doc, getDoc } from "firebase/firestore";
 import { auth, db } from "../firebase.config";
 // toastify

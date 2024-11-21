@@ -4,6 +4,7 @@ import { db } from "../firebase.config";
 // toastify
 import { toast } from "react-toastify"
 
+
 const fetchSelectedBlogPostFromFirebase = async (id) => {
     try {
         const docRef = doc(db, "blogPosts", id);

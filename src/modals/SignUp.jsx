@@ -1,17 +1,17 @@
-import { useState } from "react";
+import React, { useState } from "react";
 // api
 import userSignUp from "../api/userSignUp.js";
 // utils
 import closeModalOnSubmit from '../utils/closeModalOnSubmit.js'
-// asset
-import registrationModalImg from '../assets/header-assets/jeftine_kuce_register_bg.jpg'
-import appNameImg from '../assets/header-assets/jeftine_kuce_logo_text_whit_small.png'
 // components
 import ModalHeader from "../components/modals/ModalHeader.jsx";
 import AccountTypeOptions from "../components/modals/signUp/AccountTypeOptions.jsx";
 import FormInput from "../components/FormInput.jsx";
 import FormSubmitBtn from "../components/FormSubmitBtn.jsx";
 import ModalFooter from "../components/modals/ModalFooter.jsx";
+// asset
+import registrationModalImg from '../assets/header-assets/jeftine_kuce_register_bg.jpg'
+import appNameImg from '../assets/header-assets/jeftine_kuce_logo_text_whit_small.png'
 // toastify
 import { toast } from 'react-toastify'
 
@@ -38,6 +38,8 @@ const SignUp = () => {
         const enteredEmail = e.target.elements[1].value.trim()
         const enteredPassword = e.target.elements[2].value
 
+        if(enteredEmail == 'admin@admin.com') return setIsLoading(false)
+
         const response = await userSignUp(accountType, enteredUsername, enteredEmail, enteredPassword)
 
         if (response) {
@@ -54,12 +56,9 @@ const SignUp = () => {
             closeModalOnSubmit('#signUpModal')
 
             // redirected user to the Profile page
-            setTimeout(() => {
-                window.location.href = '/nalog'
-            }, 2000)
+            setTimeout(() => window.location.href = '/nalog', 2000)
         }
 
-        // loading
         setIsLoading(false)
     }
 

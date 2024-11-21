@@ -1,8 +1,8 @@
 import React from 'react'
 
 
-const ListingDetailsItemFour = ({ selectedListingDetails }) => {
-    const { contactFullName, contactPhoneNumber, contactEmailAddress } = selectedListingDetails
+const ListingDetailsItemFour = ({ selectedListingDetails }) => {   
+    const { userAccountType, contactFullName, contactPhoneNumber, contactEmailAddress } = selectedListingDetails
 
     return (
         <>
@@ -10,7 +10,8 @@ const ListingDetailsItemFour = ({ selectedListingDetails }) => {
                 Kontakt informacije:
             </h4>
             <p className='mb-0 fw-bold text-muted'>
-                Ime vlasnika:<span className='ms-1 text-dark'>{contactFullName}</span>
+                {userAccountType == 'pravno' ? 'Naziv agencije:' : 'Ime vlasnika:'}                
+                <span className='ms-1 text-dark'>{contactFullName}</span>
             </p>
             <p className='mb-0 fw-bold text-muted'>
                 Email:<span className='ms-1 text-dark'>{contactEmailAddress}</span>

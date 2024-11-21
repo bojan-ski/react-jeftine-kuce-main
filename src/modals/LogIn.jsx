@@ -1,17 +1,17 @@
-import { useState } from 'react'
+import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-// pis
+// api
 import userLogin from '../api/userLogin.js'
 // utils func
 import closeModalOnSubmit from '../utils/closeModalOnSubmit.js'
-// app assets
-import logInModalImg from '../assets/header-assets/jeftine_kuce_login_bg.jpg'
-import appNameImg from '../assets/header-assets/jeftine_kuce_logo_text_whit_small.png'
 // components
 import ModalHeader from '../components/modals/ModalHeader.jsx'
 import ModalFooter from '../components/modals/ModalFooter.jsx'
 import FormInput from '../components/FormInput.jsx'
 import FormSubmitBtn from '../components/FormSubmitBtn.jsx'
+// app assets
+import logInModalImg from '../assets/header-assets/jeftine_kuce_login_bg.jpg'
+import appNameImg from '../assets/header-assets/jeftine_kuce_logo_text_whit_small.png'
 // toastify
 import { toast } from 'react-toastify'
 
@@ -27,6 +27,8 @@ const LogIn = () => {
 
         const enteredEmail = e.target.elements[0].value.trim()
         const enteredPassword = e.target.elements[1].value
+
+        if(enteredEmail == 'admin@admin.com') return setIsLoading(false)
 
         const response = await userLogin(enteredEmail, enteredPassword)
 
@@ -45,7 +47,6 @@ const LogIn = () => {
             navigate('/nalog')
         }
 
-        // loading
         setIsLoading(false)
     }
 

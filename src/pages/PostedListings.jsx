@@ -19,11 +19,7 @@ const PostedListings = () => {
 
   // Fetch the first page on mount
   useEffect(() => {
-    console.log('useEffect - PostedListings');
-
-    if (listings.length == 0){
-      fetchListings();
-    }
+    if (listings.length == 0) fetchListings();
   }, []);
 
   return (

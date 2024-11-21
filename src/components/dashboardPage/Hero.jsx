@@ -1,8 +1,10 @@
+import React from 'react'
 // asset 
 import heroImg from '../../assets/dashboard-assets/jeftine_kuce_hero.png'
 // components
 import DashboardFilterOptions from './DashboardFilterOptions.jsx';
 import CounterBox from './CounterBox.jsx';
+
 
 const Hero = () => {
     return (
