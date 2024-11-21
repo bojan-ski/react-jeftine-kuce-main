@@ -1,8 +1,13 @@
+import React from 'react'
+// context
+import { useGlobalContext } from "../../context"
 // modals
 import PostNewListingModal from "../../modals/PostNewListingModal"
 
 
-const ProfilePageSelectOptions = ({ selectedProfilePageOption, setSelectedProfilePageOption }) => {
+const ProfilePageSelectOptions = () => {
+    const { selectedProfilePageOption, setSelectedProfilePageOption } = useGlobalContext()
+
     return (
         <>
             <section className="profile-page-options border-bottom pb-4 mb-5">
@@ -17,10 +22,6 @@ const ProfilePageSelectOptions = ({ selectedProfilePageOption, setSelectedProfil
                         <button className={`select-option-btn ${selectedProfilePageOption == 'active-listings' && 'select-option-btn-active'}`} onClick={() => setSelectedProfilePageOption('active-listings')}>
                             Aktivni oglasi
                         </button>
-
-                        {/* <button className={`btn border px-3 select-option-btn ${selectedProfilePageOption == 'post-listing' && 'select-option-btn-active'}`} onClick={() => setSelectedProfilePageOption('post-listing')}>
-                        Omiljeni oglasi
-                        </button> */}
                     </div>
 
                     {/* row item 2 */}

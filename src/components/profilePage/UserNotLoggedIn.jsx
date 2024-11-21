@@ -1,3 +1,6 @@
+import React from 'react'
+
+
 const UserNotLoggedIn = () => {
     return (
         <div className="text-center py-5">

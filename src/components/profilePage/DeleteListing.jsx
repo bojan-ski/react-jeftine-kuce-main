@@ -18,14 +18,14 @@ const DeleteListing = ({ userPostedListingID, imageUrls }) => {
         if (response) {
             // re-fetch user listings
             if (selectedProfilePageOption == 'pending-listings') {
-                fetchUserPendingListings()
+                await fetchUserPendingListings()
             }
 
             if (selectedProfilePageOption == 'active-listings') {
-                fetchUserActiveListings()
+                await fetchUserActiveListings()
             }
 
-            // success message after listing removal 
+            // success message
             toast.success('Uspešno ste obrisali Vaš oglas');
 
             //scroll to top

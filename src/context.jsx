@@ -23,7 +23,7 @@ export const AppProvider = ({ children }) => {
         userName: '',
         userAccountType: '',
         userVerified: false
-    })
+    })    
 
     useEffect(() => {
         console.log('useEffect - context');
@@ -92,17 +92,17 @@ export const AppProvider = ({ children }) => {
     // AGENCIES PAGE
     const [selectedAgencyData, setSelectedAgencyData] = useState({})
 
-    const itemsSelectedAgencyPage = 2;
+    const itemsSelectedAgencyPage = 3;
     const { listings: allSelectedAgencyListings, fetchListings: fetchAllSelectedAgencyListings, page: curSelectedAgencyPage, isLoading: isAllSelectedAgencyListingsLoading } = useFetchSelectedAgencyListings(itemsSelectedAgencyPage);    
 
     // PROFILE PAGE
     const [selectedProfilePageOption, setSelectedProfilePageOption] = useState('pending-listings')
 
-    const itemsPendingListings = 6;
-    const { listings: userPendingListings, fetchListings: fetchUserPendingListings, page: curPendingListingsPage } = useFetchProfilePageData(itemsPendingListings, 'pending');
+    const itemsPendingListings = 3;
+    const { listings: userPendingListings, fetchListings: fetchUserPendingListings, page: curPendingListingsPage, isLoading: isPendingListingsLoading } = useFetchProfilePageData(itemsPendingListings, 'pending');
 
-    const itemsActiveListings = 6;
-    const { listings: userActiveListings, fetchListings: fetchUserActiveListings, page: curActiveListingsPage } = useFetchProfilePageData(itemsActiveListings, 'active');
+    const itemsActiveListings = 3;
+    const { listings: userActiveListings, fetchListings: fetchUserActiveListings, page: curActiveListingsPage, isLoading: isActiveListingsLoading } = useFetchProfilePageData(itemsActiveListings, 'active');
 
     // BLOG PAGE   
     const itemsPerBlogPage = 3;
@@ -136,16 +136,18 @@ export const AppProvider = ({ children }) => {
         isAllSelectedAgencyListingsLoading, // SelectedAgencyListings
 
         //PROFILE PAGE
-        selectedProfilePageOption, // Profile, DeleteListing
-        setSelectedProfilePageOption, // Profile
+        selectedProfilePageOption, // Profile, DeleteListing, ProfilePageSelectOptions
+        setSelectedProfilePageOption, // ProfilePageSelectOptions
 
         userPendingListings, // UserPendingListings
         fetchUserPendingListings, // UserPendingListings, DeleteListing
         curPendingListingsPage, // UserPendingListings
+        isPendingListingsLoading, // UserPendingListings
 
         userActiveListings, // UserActiveListings
         fetchUserActiveListings, // UserActiveListings, DeleteListing
-        curActiveListingsPage, // UserActiveListings
+        curActiveListingsPage, // UserActiveListings,
+        isActiveListingsLoading, // UserActiveListings
 
         //BLOG PAGE
         blogPosts, // Blog

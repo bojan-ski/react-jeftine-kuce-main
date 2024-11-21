@@ -4,6 +4,7 @@ import { useGlobalContext } from '../../../context'
 // components
 import FormInput from '../../FormInput'
 
+
 const FormRowDataTwo = ({ formData, handleAddFormData }) => {   
     const { userData } = useGlobalContext()
     const { listingType, propertyType, propertyName, lotNumber, numRooms, numBathrooms, squareFootage, propertyAddress, propertyLocation, propertyDistrict, propertyImages, askingPrice, listingDescription, contactFullName, contactPhoneNumber, contactEmailAddress } = formData

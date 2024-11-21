@@ -1,4 +1,4 @@
-import { useState } from "react";
+import React, { useState } from "react";
 // api funcs
 import storeUploadedImage from '../api/storeUploadedImage.js'
 import publishNewListing from "../api/publishNewListing.js";
@@ -15,6 +15,7 @@ import { toast } from "react-toastify";
 const PostNewListingModal = () => {   
     const { userData } = useGlobalContext()    
     const { userID, userName, userAccountType, userVerified } = userData
+
     const [isLoading, setIsLoading] = useState(false);
     const [formData, setFormData] = useState({
         userRef: userID,
@@ -47,8 +48,6 @@ const PostNewListingModal = () => {
         }));
     };
 
-    // console.log(formData);
-
     const validateImages = (images) => {
         if (images.length > 7) {
             toast.warning('Ograničenje je 7 slika!');
@@ -64,7 +63,7 @@ const PostNewListingModal = () => {
     const handleCreateNewListingSubmit = async (e) => {
         e.preventDefault();
 
-        // setIsLoading(true);
+        setIsLoading(true);
 
         // if (!userVerified) {
         //     toast.error('Vaš nalog nije verifikovan. Molimo Vas proverite Vašu elektronsku poštu radi verifikacije Vašeg naloga');
@@ -85,9 +84,9 @@ const PostNewListingModal = () => {
             await publishNewListing(formData, imageUrls)
         } catch (error) {
             toast.error('Greška prilikom otpremanja slika, molimo Vas probajte ponovo');
-        } finally {
-            setIsLoading(false);
-        }
+        } 
+        
+        setIsLoading(false);
     };
 
     if (isLoading) return <Loading />

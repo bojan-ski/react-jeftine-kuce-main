@@ -92,7 +92,6 @@ const useFetchAllActiveListings = (itemsPerPage) => {
             toast.error('Greška prilikom prikazivanja svi objavljenih oglasa, molimo Vas probajte ponovo')
 
             console.log(error);
-
         }
         setIsLoading(false)
 

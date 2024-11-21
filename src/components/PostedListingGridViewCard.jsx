@@ -1,9 +1,12 @@
+import React from 'react'
 import { Link } from "react-router-dom"
 // context
 import { useGlobalContext } from "../context.jsx";
 // utils func
 import priceComma from "../utils/priceComma.js";
 import scrollToTop from "../utils/scrollToTop.js";
+// components
+import DeleteListing from "./profilePage/DeleteListing.jsx";
 // React Icons
 import { LiaTapeSolid } from 'react-icons/lia'
 import { MdConfirmationNumber, MdOutlineBedroomChild } from 'react-icons/md'
@@ -11,8 +14,6 @@ import { PiBathtubLight } from 'react-icons/pi'
 // Swiper
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation, Pagination } from 'swiper/modules';
-// components
-import DeleteListing from "./profilePage/DeleteListing.jsx";
 
 
 const PostedListingGridViewCard = ({ postedListing }) => {

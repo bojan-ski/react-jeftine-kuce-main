@@ -11,10 +11,10 @@ import UserPendingListings from '../components/profilePage/UserPendingListings.j
 
 
 const Profile = () => {
-    const { userData, selectedProfilePageOption, setSelectedProfilePageOption } = useGlobalContext()
+    const { userData, selectedProfilePageOption } = useGlobalContext()
 
     return (
-        <div className="profile-page">
+        <div className="profile-page mb-5">
 
             <PageLocation />
 
@@ -23,7 +23,7 @@ const Profile = () => {
                     <>
                         <WelcomeMessage userName={userData.userName} />
 
-                        <ProfilePageSelectOptions selectedProfilePageOption={selectedProfilePageOption} setSelectedProfilePageOption={setSelectedProfilePageOption} />
+                        <ProfilePageSelectOptions />
 
                         {selectedProfilePageOption == 'pending-listings' && <UserPendingListings />}
 

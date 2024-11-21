@@ -1,3 +1,4 @@
+import React from 'react'
 // component
 import PostedListingGridViewCard from "./PostedListingGridViewCard.jsx"
 

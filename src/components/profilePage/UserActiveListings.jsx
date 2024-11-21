@@ -7,16 +7,13 @@ import Pagination from '../Pagination';
 
 
 const UserActiveListings = () => {
-    const { userActiveListings, fetchUserActiveListings, curActiveListingsPage } = useGlobalContext();
+    const { userActiveListings, fetchUserActiveListings, curActiveListingsPage, isActiveListingsLoading } = useGlobalContext();
 
     // Fetch the first page on mount
     useEffect(() => {
         console.log('useEffect - UserActiveListings');
 
-        if (userActiveListings.length == 0) {
-            console.log('get active listings data');
-            fetchUserActiveListings();
-        }
+        if (userActiveListings.length == 0) fetchUserActiveListings();
     }, [])
 
     return (
@@ -33,7 +30,7 @@ const UserActiveListings = () => {
                         <AllPostedListingsGridView displayedListingsList={userActiveListings} />
                     </section>
 
-                    <Pagination fetchData={fetchUserActiveListings} page={curActiveListingsPage} />
+                    <Pagination fetchData={fetchUserActiveListings} page={curActiveListingsPage} isLoading={isActiveListingsLoading}/>
                 </>
             )}
         </>
