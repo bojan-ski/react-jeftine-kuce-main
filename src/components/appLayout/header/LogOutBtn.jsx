@@ -21,7 +21,9 @@ const LogOutBtn = () => {
                 setUserData({
                     isLoggedIn: false,
                     userID: '',
+                    userName: '',
                     userEmail: '',
+                    userAccountType: '',
                     userVerified: false
                 })
 

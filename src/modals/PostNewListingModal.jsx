@@ -14,12 +14,13 @@ import { toast } from "react-toastify";
 
 const PostNewListingModal = () => {   
     const { userData } = useGlobalContext()    
-    const { userID, userName, userAccountType, userVerified } = userData
+    const { userID, userName, userEmail, userAccountType, userVerified } = userData
 
     const [isLoading, setIsLoading] = useState(false);
     const [formData, setFormData] = useState({
         userRef: userID,
         userUsername: userName,
+        userEmail: userEmail,
         userAccountType: userAccountType,
         listingStatus: 'pending',
         listingType: 'prodajem',

@@ -21,23 +21,23 @@ export const AppProvider = ({ children }) => {
         isLoggedIn: false,
         userID: '',
         userName: '',
+        userEmail: '',
         userAccountType: '',
         userVerified: false
-    })    
+    })
 
     useEffect(() => {
-        console.log('useEffect - context');
-
         onAuthStateChanged(auth, async (user) => {
             if (user) {
-                let userProfileData = await fetchUserDataFromFirebase()
+                let userProfileData = await fetchUserDataFromFirebase()               
 
                 auth.currentUser ? (
                     setUserData({
                         isLoggedIn: true,
                         userID: user.uid,
                         userName: user.displayName,
-                        userAccountType: userProfileData.accountType,
+                        userEmail: user.email,
+                        userAccountType: userProfileData?.accountType,
                         userVerified: user.emailVerified
                     })
                 ) : (
@@ -45,6 +45,7 @@ export const AppProvider = ({ children }) => {
                         isLoggedIn: false,
                         userID: '',
                         userName: '',
+                        userEmail: '',
                         userAccountType: '',
                         userVerified: false
                     })
@@ -93,7 +94,7 @@ export const AppProvider = ({ children }) => {
     const [selectedAgencyData, setSelectedAgencyData] = useState({})
 
     const itemsSelectedAgencyPage = 3;
-    const { listings: allSelectedAgencyListings, fetchListings: fetchAllSelectedAgencyListings, page: curSelectedAgencyPage, isLoading: isAllSelectedAgencyListingsLoading } = useFetchSelectedAgencyListings(itemsSelectedAgencyPage);    
+    const { listings: allSelectedAgencyListings, fetchListings: fetchAllSelectedAgencyListings, page: curSelectedAgencyPage, isLoading: isAllSelectedAgencyListingsLoading } = useFetchSelectedAgencyListings(itemsSelectedAgencyPage);
 
     // PROFILE PAGE
     const [selectedProfilePageOption, setSelectedProfilePageOption] = useState('pending-listings')

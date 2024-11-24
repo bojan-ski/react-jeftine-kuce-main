@@ -1,17 +1,18 @@
 import React from 'react'
 // components
 import PageLocation from '../components/PageLocation'
+import PageHeader from '../components/PageHeader'
 
 
 const AboutUs = () => {
     return (
-        <div className='about-us-page'>
+        <div className='about-us-page pb-5'>
              <PageLocation />
 
+             <PageHeader title='O nama'/>
+
             <div className="container">
-                <h1>
-                    About Us
-                </h1>
+
             </div>
         </div>
     )

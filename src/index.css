@@ -813,7 +813,7 @@ main {
   text-align: justify;
 }
 
-/* BLOG PAGE and SELECTED BLOG POST */
+/* BLOG PAGE and SELECTED BLOG POST PAGES*/
 .blog-page, 
 .selected-blog-post-page {
   background-image: url(../src/assets/dashboard-assets/jeftine_kuce_slider_bg.png);
@@ -829,6 +829,11 @@ main {
 
 .selected-blog-post-page p{
   text-align: justify;
+}
+
+/* ABOUT US PAGE */
+.about-us-page {
+  background-image: url(../src/assets/dashboard-assets/jeftine_kuce_slider_bg.png);
 }
 
 /* CONTRACT PAGE */
