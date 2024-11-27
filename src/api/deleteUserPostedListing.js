@@ -8,7 +8,7 @@ import { toast } from "react-toastify"
 
 
 const deleteUserPostedListing = async (userPostedListingID, imageUrls) => {
-    if (window.confirm('Are you sure you want to delete?')) {
+    if (window.confirm('Da li ste sigurni da želite da obrišete Vaš oglas?')) {
         try {
             // delete image/images from storage
             Array.from(imageUrls).forEach(imageUrl => {

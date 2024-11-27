@@ -4,17 +4,20 @@ import { useGlobalContext } from "../context.jsx"
 // components
 import PageLocation from "../components/PageLocation.jsx"
 import UserNotLoggedIn from "../components/profilePage/UserNotLoggedIn.jsx"
-import ProfilePageSelectOptions from '../components/profilePage/ProfilePageSelectOptions.jsx'
 import WelcomeMessage from '../components/profilePage/WelcomeMessage.jsx'
-import UserActiveListings from '../components/profilePage/UserActiveListings.jsx'
-import UserPendingListings from '../components/profilePage/UserPendingListings.jsx'
+import ProfileDetails from '../components/profilePage/ProfileDetails.jsx'
+import UserListings from '../components/profilePage/UserListings.jsx'
 
 
 const Profile = () => {
-    const { userData, selectedProfilePageOption } = useGlobalContext()
+    const { userData, userPendingListings, userActiveListings } = useGlobalContext()
+
+    // console.log(userPendingListings);
+    // console.log(userActiveListings);
+    
 
     return (
-        <div className="profile-page mb-5">
+        <div className="profile-page pb-5">
 
             <PageLocation />
 
@@ -23,11 +26,9 @@ const Profile = () => {
                     <>
                         <WelcomeMessage userName={userData.userName} />
 
-                        <ProfilePageSelectOptions />
+                        <ProfileDetails />
 
-                        {selectedProfilePageOption == 'pending-listings' && <UserPendingListings />}
-
-                        {selectedProfilePageOption == 'active-listings' && <UserActiveListings />}
+                        <UserListings />
                     </>
                 ) : (
                     <UserNotLoggedIn />

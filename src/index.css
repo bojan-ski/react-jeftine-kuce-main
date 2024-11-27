@@ -7,7 +7,6 @@
 /* GOOGLE FONT - POPPINS */
 @import url("https://fonts.googleapis.com/css2?family=Mulish:ital,wght@0,200..1000;1,200..1000&display=swap");
 
-
 /* ---------- GENERAL ---------- */
 :root {
   /* colors */
@@ -518,7 +517,7 @@ main {
 }
 
 /* SPINNER */
-.spinner img{
+.spinner img {
   height: 100px;
 }
 
@@ -558,8 +557,8 @@ main {
   transition: var(--transition-ease);
 }
 
-.swiper:hover .swiper-button-prev.swiper-button-disabled, 
-.swiper:hover .swiper-button-next.swiper-button-disabled{
+.swiper:hover .swiper-button-prev.swiper-button-disabled,
+.swiper:hover .swiper-button-next.swiper-button-disabled {
   opacity: 0.35 !important;
 }
 
@@ -805,29 +804,43 @@ main {
 }
 
 /* AGENCIES PAGE */
-.agencies-page section .agency-box-data{
+.agencies-page section .agency-box-data {
   box-shadow: var(--light-dark-shadow);
 }
 
-.agencies-page section .agency-box-data .agency-desc{
+.agencies-page section .agency-box-data .agency-desc {
   text-align: justify;
 }
 
+/* PROFILE PAGE */
+.profile-page {
+  background-image: url(../src/assets/dashboard-assets/jeftine_kuce_slider_bg.png);
+}
+
+/* ProfileDetails component */
+.profile-page .profile-details {
+  box-shadow: var(--light-dark-shadow);
+}
+
+.profile-page .user-listings {
+  box-shadow: var(--light-dark-shadow);
+}
+
 /* BLOG PAGE and SELECTED BLOG POST PAGES*/
-.blog-page, 
+.blog-page,
 .selected-blog-post-page {
   background-image: url(../src/assets/dashboard-assets/jeftine_kuce_slider_bg.png);
 }
 
-.blog-page .blog-post-card{
+.blog-page .blog-post-card {
   box-shadow: var(--light-dark-shadow);
 }
 
-.blog-page .blog-post-card .blog-post-card-main{
+.blog-page .blog-post-card .blog-post-card-main {
   height: 220px;
 }
 
-.selected-blog-post-page p{
+.selected-blog-post-page p {
   text-align: justify;
 }
 

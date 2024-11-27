@@ -110,7 +110,7 @@ export const AppProvider = ({ children }) => {
     const { blogPosts, fetchBlogPosts, curBlogPage, isLoading: isBlogsPageLoading } = useFetchBlogPageData(itemsPerBlogPage)
 
     return <AppContext.Provider value={{
-        userData, //Profile, HeaderTop, Profile, PostNewListingModal, FormRowDataTwo, PostedListingGridViewCard
+        userData, //Profile, HeaderTop, Profile, ProfileDetails, PostNewListingModal, FormRowDataTwo, PostedListingGridViewCard
         setUserData, // LogOutBtn
 
         // POSTED LISTINGS PAGE
@@ -137,7 +137,7 @@ export const AppProvider = ({ children }) => {
         isAllSelectedAgencyListingsLoading, // SelectedAgencyListings
 
         //PROFILE PAGE
-        selectedProfilePageOption, // Profile, DeleteListing, ProfilePageSelectOptions
+        selectedProfilePageOption, // UserListings, DeleteListing, ProfilePageSelectOptions
         setSelectedProfilePageOption, // ProfilePageSelectOptions
 
         userPendingListings, // UserPendingListings
