@@ -1,4 +1,6 @@
 import React from 'react'
+// app assets
+import appNameImg from '../assets/header-assets/jeftine_kuce_logo_text_whit_small.png'
 
 
 const SelectedImageModal = ({ imageSrc }) => {
@@ -11,6 +13,7 @@ const SelectedImageModal = ({ imageSrc }) => {
                     </div>
                     <div className="modal-body text-center">
                         <img src={imageSrc} alt="" className="img-fluid" />
+                        <img src={appNameImg} alt="forgotPassword-img" className="modal-img-2" />
                     </div>
                 </div>
             </div>

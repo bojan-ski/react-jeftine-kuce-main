@@ -803,6 +803,18 @@ main {
   width: 100%;
 }
 
+/* SelectedImageModal modal */
+#selectedImageModal .modal-dialog .modal-body{
+  position: relative;
+}
+
+#selectedImageModal .modal-dialog .modal-body .modal-img-2{
+  width: 150px;
+  position: absolute;
+  right: 60px;
+  bottom: 40px;
+}
+
 /* AGENCIES PAGE */
 .agencies-page section .agency-box-data {
   box-shadow: var(--light-dark-shadow);

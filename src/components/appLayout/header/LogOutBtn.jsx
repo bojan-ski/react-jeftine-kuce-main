@@ -1,5 +1,4 @@
 import React from 'react'
-import { useNavigate } from "react-router-dom";
 // context
 import { useGlobalContext } from "../../../context";
 // firebase
@@ -10,7 +9,6 @@ import { toast } from "react-toastify";
 
 
 const LogOutBtn = () => {
-    const navigate = useNavigate()
     const { setUserData } = useGlobalContext()
 
     const logOutUser = async () => {
@@ -31,7 +29,7 @@ const LogOutBtn = () => {
                 toast.success('Uspešno ste se odjavili');
 
                 // redirect user
-                navigate('/')
+                setTimeout(() => window.location.href = '/', 50)
             } catch (error) {
                 //error message
                 toast.error('Greška prilikom odjave, molimo Vas probajte ponovo')
@@ -40,7 +38,7 @@ const LogOutBtn = () => {
     }
 
     return (
-        <button type="button" className="btn btn-danger px-2 py-1" onClick={logOutUser}>
+        <button type="button" className="btn btn-warning text-white px-2 py-1" onClick={logOutUser}>
             Odjavi se
         </button>
     )
