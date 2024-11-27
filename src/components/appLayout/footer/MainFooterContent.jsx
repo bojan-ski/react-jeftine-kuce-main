@@ -19,12 +19,13 @@ const MainFooterContent = () => {
     const handleNewsletterEmailSubmit = async (e) => {
         e.preventDefault()
 
-        setIsLoading(true)
+        setIsLoading(true)    
 
         const response = await subscribeToNewsletter(e.target.elements[0].value)
 
         if (response) {
             e.target.elements[0].value = ""
+            e.target.elements[2].checked = false;
 
             // success message
             toast.success('Uspešno ste prosledili Vašu email adresu')
