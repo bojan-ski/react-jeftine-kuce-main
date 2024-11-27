@@ -9,6 +9,8 @@ import propertyTypes from "../../../data/propertyTypes.js"
 // assets
 import footerIcon1 from '../../../assets/footer-assets/jeftine_kuce_footer_1.png'
 import footerIcon2 from '../../../assets/footer-assets/jeftine_kuce_footer_2.png'
+// toastify
+import { toast } from 'react-toastify'
 
 
 const MainFooterContent = () => {
