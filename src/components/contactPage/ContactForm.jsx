@@ -34,6 +34,7 @@ const ContactForm = () => {
                 // success message
                 toast.success('Vaša poruka je poslata');
 
+                // form reset
                 e.target.elements[0].value = '';
                 e.target.elements[1].value = '';
                 e.target.elements[2].value = 'Odaberite';

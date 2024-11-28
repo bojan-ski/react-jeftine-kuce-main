@@ -3,6 +3,7 @@ import { getStorage, ref, deleteObject } from "firebase/storage";
 // toastify
 import { toast } from "react-toastify"
 
+
 const deleteUploadedImageFromDB = async (imageUrl) => {
     const url = new URL(imageUrl);
     const uploadedImagePath = decodeURIComponent(url.pathname.split('/o/')[1].split('?')[0]);

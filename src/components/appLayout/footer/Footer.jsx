@@ -8,14 +8,10 @@ import RightsFooter from "./RightsFooter.jsx"
 const Footer = () => {
   return (
     <footer id="footer">
-
-      {/* MainFooterContent component */}
       <MainFooterContent />
 
-      {/* NavAndSocialFooterLinks component */}
       <NavAndSocialFooterLinks />
 
-      {/* RightsFooter component */}
       <RightsFooter />
     </footer>
   )
