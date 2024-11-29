@@ -54,7 +54,7 @@ export const AppProvider = ({ children }) => {
         })
     }, [])
 
-    // POSTED LISTINGS PAGE
+    // POSTED LISTINGS & DASHBOARD PAGES
     const itemsPerListingsPage = 3;
     const { listings, fetchListings, page: curListingsPage, isLoading: isListingsPageLoading } = useFetchAllActiveListings(itemsPerListingsPage);
 
@@ -113,9 +113,9 @@ export const AppProvider = ({ children }) => {
         userData, //Profile, HeaderTop, Profile, ProfileDetails, PostNewListingModal, FormRowDataTwo, PostedListingGridViewCard
         setUserData, // LogOutBtn
 
-        // POSTED LISTINGS PAGE
+        // POSTED LISTINGS & DASHBOARD PAGE
         listings, // PostedListings, PostedListingsPagination
-        fetchListings, // PostedListings, PostedListingsSearchOption, PostedListingsPagination
+        fetchListings, // DashboardFilterOptions, PostedListings, PostedListingsSearchOption, PostedListingsPagination
         curListingsPage, // PostedListingsPagination
         isListingsPageLoading, // PostedListings
 

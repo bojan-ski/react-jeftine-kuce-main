@@ -8,9 +8,12 @@ import { FaMagnifyingGlass } from 'react-icons/fa6';
 
 
 const DashboardFilterOptions = () => {
-    const { handleSubmittedFilterOptions, setDisableOption, setCondition } = useGlobalContext()
+    const { fetchListings, handleSubmittedFilterOptions, setDisableOption, setCondition } = useGlobalContext()
 
+    // Fetch the listings first page on mount & reset setCondition
     useEffect(() => {
+        fetchListings();
+
         setDisableOption(false)
     
         setCondition()
