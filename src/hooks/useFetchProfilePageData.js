@@ -12,8 +12,8 @@ const useFetchProfilePageData = (itemsPerPage, listingStatus) => {
     const [page, setPage] = useState(0);
     const [isLoading, setIsLoading] = useState(false);
 
-    const fetchListings = useCallback(async (pageNumber = 0, reset = false) => {
-        if (!auth.currentUser) return null
+    const fetchListings = useCallback(async (pageNumber = 0, reset = false) => {        
+        if (!auth?.currentUser) return null
 
         setIsLoading(true);
 
@@ -22,7 +22,7 @@ const useFetchProfilePageData = (itemsPerPage, listingStatus) => {
         try {
             let queryParameters = [
                 collection(db, `listings`),
-                where('userRef', '==', auth.currentUser.uid),
+                where('userRef', '==', auth?.currentUser?.uid),
                 where('listingStatus', '==', `${listingStatus}`),
                 orderBy('timestamp', 'desc'),
                 limit(itemsPerPage)
@@ -74,7 +74,7 @@ const useFetchProfilePageData = (itemsPerPage, listingStatus) => {
             setPage(pageNumber);
         } catch (error) {
             //error message
-            toast.error('Greška prilikom prikazivanja Vaših oglasa, molimo Vas probajte ponovo')
+            toast.error('Greška prilikom prikazivanja Vaših oglasa, molimo Vas probajte ponovo')            
         }
         
         setIsLoading(false)

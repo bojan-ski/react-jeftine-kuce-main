@@ -3,35 +3,42 @@ import React, { useState } from 'react'
 import deleteUserAccount from '../api/deleteUserAccount';
 // firebase
 import { auth } from '../firebase.config';
+// context
+import { useGlobalContext } from '../context';
 // components
 import FormInput from '../components/FormInput';
 // toastify
 import { toast } from 'react-toastify';
 
 
-const DeleteAccountModal = () => {   
-    const [isLoading, setIsLoading] = useState(false)   
+const DeleteAccountModal = () => {
+    const { userPendingListings, userActiveListings } = useGlobalContext()
+    const [isLoading, setIsLoading] = useState(false)
 
     const handleDeleteAccount = async e => {
         e.preventDefault()
 
-        setIsLoading(true)
+        if (userPendingListings.length == 0 && userActiveListings.length == 0) {
+            setIsLoading(true)
 
-        const enteredPassword = e.target.elements[0].value
-        
-        const response = await deleteUserAccount(auth?.currentUser, auth?.currentUser?.uid, enteredPassword)
+            const enteredPassword = e.target.elements[0].value
 
-        if (response) {
-            // success message
-            toast.success('Uspešno ste se obrisali Vaš nalog');
+            const response = await deleteUserAccount(auth?.currentUser, auth?.currentUser?.uid, enteredPassword)
 
-            // reset form data
-            e.target.elements[0].value = ''
+            if (response) {
+                // success message
+                toast.success('Uspešno ste obrisali Vaš nalog');
 
-            // redirected user 
-            setTimeout(() => window.location.href = '/', 2000)
+                // reset form data
+                e.target.elements[0].value = ''
+
+                // redirected user 
+                setTimeout(() => window.location.href = '/', 2000)
+            }
+            setIsLoading(false)
+        } else {
+            return toast.warning('Molimo Vas da obrišete oglase pre brisanja naloga')
         }
-        setIsLoading(false)
     }
 
     return (

@@ -140,13 +140,13 @@ export const AppProvider = ({ children }) => {
         selectedProfilePageOption, // UserListings, DeleteListing, ProfilePageSelectOptions
         setSelectedProfilePageOption, // ProfilePageSelectOptions
 
-        userPendingListings, // UserPendingListings
-        fetchUserPendingListings, // UserPendingListings, DeleteListing
+        userPendingListings, // Profile, UserPendingListings
+        fetchUserPendingListings, // Profile, UserPendingListings, DeleteListing
         curPendingListingsPage, // UserPendingListings
         isPendingListingsLoading, // UserPendingListings
 
-        userActiveListings, // UserActiveListings
-        fetchUserActiveListings, // UserActiveListings, DeleteListing
+        userActiveListings, // Profile, UserActiveListings
+        fetchUserActiveListings, // Profile, UserActiveListings, DeleteListing
         curActiveListingsPage, // UserActiveListings,
         isActiveListingsLoading, // UserActiveListings
 

@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 // context
 import { useGlobalContext } from '../../context';
 // components
@@ -8,11 +8,6 @@ import Pagination from '../Pagination';
 
 const UserActiveListings = () => {
     const { userActiveListings, fetchUserActiveListings, curActiveListingsPage, isActiveListingsLoading } = useGlobalContext();
-
-    // Fetch the first page on mount
-    useEffect(() => {
-        if (userActiveListings.length == 0) fetchUserActiveListings();
-    }, [])
 
     return (
         <>

@@ -29,7 +29,7 @@ const LogOutBtn = () => {
                 toast.success('Uspešno ste se odjavili');
 
                 // redirect user
-                setTimeout(() => window.location.href = '/', 1)
+                setTimeout(() => window.location.href = '/', 50)
             } catch (error) {
                 //error message
                 toast.error('Greška prilikom odjave, molimo Vas probajte ponovo')

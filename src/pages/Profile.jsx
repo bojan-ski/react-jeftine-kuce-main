@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 // context
 import { useGlobalContext } from "../context.jsx"
 // components
@@ -10,11 +10,13 @@ import UserListings from '../components/profilePage/UserListings.jsx'
 
 
 const Profile = () => {
-    const { userData, userPendingListings, userActiveListings } = useGlobalContext()
+    const { userData, userPendingListings, userActiveListings, fetchUserPendingListings, fetchUserActiveListings } = useGlobalContext()
 
-    // console.log(userPendingListings);
-    // console.log(userActiveListings);
-    
+    // Fetch the first page on mount
+    useEffect(() => {        
+        if (userPendingListings.length == 0) fetchUserPendingListings();
+        if (userActiveListings.length == 0) fetchUserActiveListings();
+    }, [userData?.isLoggedIn]) 
 
     return (
         <div className="profile-page pb-5">
