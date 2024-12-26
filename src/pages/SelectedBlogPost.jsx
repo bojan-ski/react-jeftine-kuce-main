@@ -10,9 +10,9 @@ import SelectedBlogPostContent from "../components/selectedBlogPostPage/Selected
 // REACT QUERY
 const fetchSelectedBlogPostFromFirebaseQuery = (id) => {
     return {
-        queryKey: ['selectedBlogPost', id], 
+        queryKey: ['selectedBlogPost', id],
         queryFn: () => fetchSelectedBlogPostFromFirebase(id)
-      }
+    }
 }
 
 // LOADER
@@ -27,26 +27,30 @@ const SelectedBlogPost = () => {
 
     return (
         <div className="selected-blog-post-page py-5 px-3">
+
+            <div className="col-12 col-lg-8 mx-auto">
+                <BackButton backPath='/blog' />
+            </div>
+
+
             <div className="row">
 
                 {/* row item 1 */}
-                <div className="col-2 text-center mt-5">
+                <div className={`col-6 col-lg-2 text-center order-1 ${selectedBlogPost.newBlogPostPromoImgOneUrl && 'mt-5 mb-lg-0'}`}>
                     {selectedBlogPost.newBlogPostPromoImgOneUrl && (
-                        <img src={selectedBlogPost.newBlogPostPromoImgOneUrl} alt="promo-img" className="img-fluid rounded-3 mt-5" style={{ objectFit: 'cover', height: '580px' }} />
+                        <img src={selectedBlogPost.newBlogPostPromoImgOneUrl} alt="promo-img" className="img-fluid rounded-3" style={{ objectFit: 'cover', height: '580px' }} />
                     )}
                 </div>
 
                 {/* row item 2 */}
-                <div className="col-8">
-                    <BackButton backPath='/blog' />
-
+                <div className="col-12 col-lg-8 order-3 order-lg-2">
                     <SelectedBlogPostContent selectedBlogPost={selectedBlogPost} />
                 </div>
 
                 {/* row item 3 */}
-                <div className="col-2 text-center mt-5">
+                <div className={`col-6 col-lg-2 text-center order-2 order-lg-3 ${selectedBlogPost.newBlogPostPromoImgTwoUrl && 'mt-5 mb-lg-0'}`}>
                     {selectedBlogPost.newBlogPostPromoImgTwoUrl && (
-                        <img src={selectedBlogPost.newBlogPostPromoImgTwoUrl} alt="promo-img" className="img-fluid rounded-3 mt-5" style={{ objectFit: 'cover', height: '580px' }} />
+                        <img src={selectedBlogPost.newBlogPostPromoImgTwoUrl} alt="promo-img" className="img-fluid rounded-3" style={{ objectFit: 'cover', height: '580px' }} />
                     )}
                 </div>
             </div>

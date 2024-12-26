@@ -844,6 +844,10 @@ main {
   background-image: url(../src/assets/dashboard-assets/jeftine_kuce_slider_bg.png);
 }
 
+.selected-blog-post-page p{
+  text-align: justify;
+}
+
 /* BlogPostsCard component */
 .blog-page .blog-post-card {
   box-shadow: var(--light-dark-shadow);
