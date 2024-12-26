@@ -106,7 +106,7 @@ export const AppProvider = ({ children }) => {
     const { listings: userActiveListings, fetchListings: fetchUserActiveListings, page: curActiveListingsPage, isLoading: isActiveListingsLoading } = useFetchProfilePageData(itemsActiveListings, 'active');
 
     // BLOG PAGE   
-    const itemsPerBlogPage = 3;
+    const itemsPerBlogPage = 6;
     const { blogPosts, fetchBlogPosts, curBlogPage, isLoading: isBlogsPageLoading } = useFetchBlogPageData(itemsPerBlogPage)
 
     return <AppContext.Provider value={{
